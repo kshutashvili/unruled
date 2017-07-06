@@ -1,0 +1,220 @@
+{% extends 'base.html' %}
+{% load static from staticfiles %}
+
+{% block content %}
+  <!--history block start-->
+  <section class="history-section">
+      <div class="container">
+          <div class="left-menu">
+              <nav>
+                  <a href="#" target="_blank">История</a>
+                  <a href="#">Клиенты</a>
+                  <a href="#" target="_blank">Портфолио</a>
+                  <a href="#" class="left-menu__link">Команда</a>
+                  <a href="#" target="_blank">Контакты</a>
+              </nav>
+          </div>
+          <div class="tagline">
+              <p><span></span>Lorem ipsum dolor sit amet, consectetur </p>
+              <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor </h2>
+          </div>
+          <hr width="2px" color="#fff" size='429px'>
+          <div class="history">
+              <h2>ИСТОРИЯ</h2>
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+                  magna aliqua. Ut enim ad minim veniam,<br> quis nostrud exercitation ullamco laboris nisi ut aliquip
+                  ex ea commodo consequat. </p>
+              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                  sint occaecat cupidatat non proident,<br> sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
+                  aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae </p>
+          </div>
+
+          <p class="unruled-in-numbers">Unruled в цифрах</p>
+          <div class="statistics">
+              <div class="statistics__block">
+                  <p>300</p>
+                  <p>Часов<br> дизайна</p>
+              </div>
+              <div class="statistics__block">
+                  <p>500</p>
+                  <p>Часов<br> кода</p>
+              </div>
+              <div class="statistics__block">
+                  <p>1200</p>
+                  <p>Часов<br> управления</p>
+              </div>
+              <div class="statistics__block">
+                  <p>2300</p>
+                  <p>Часов<br> верстки</p>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!--history block end-->
+
+  <!--clients start-->
+  <section class="clients-section">
+      <div class="container">
+          <h2 class="clients-section__title">НАШИ КЛИЕНТЫ</h2>
+          <div class="clients-wrap">
+              <a href=# class="clients-section__client client shadow" style="background-position: 24px 29px;"></a>
+              <a href=# class="clients-section__client client  client--wide shadow" style="background-position: -137px 30px;"></a>
+              <a href=# class="clients-section__client client shadow" style="background-position: 24px 29px;"></a>
+              <a href=# class="clients-section__client client client--wide shadow" style="background-position: -137px 30px;"></a>
+              <a href=# class="clients-section__client client shadow" style="background-position: 24px 29px;"></a>
+              <a href=# class="clients-section__client client  client--wide shadow" style="background-position: -137px 30px;"></a>
+              <a href=# class="clients-section__client client shadow" style="background-position: 24px 29px;"></a>
+              <a href=# class="clients-section__client client client--wide shadow" style="background-position: -137px 30px;"></a>
+              <a href="#" class="more-clients-btn">Смотреть еще</a>
+          </div>
+      </div>
+  </section>
+  <!--clients end-->
+
+  <!--why unruled start-->
+
+  <section class="unruled">
+      <div class="container">
+          <h2 class="unruled__title">ПОЧЕМУ UNRULED</h2>
+          <div class="advantages">
+              <div class="advantage advantage--first">
+                  <p class="advantage__icon"></p>
+                  <p class="advantage__text">НЕ шаблонный<br> дизайн</p>
+              </div>
+              <div class="advantage advantage--second">
+                  <p class="advantage__icon" style="background-position: -192px 0px;"></p>
+                  <p class="advantage__text">Чистый<br> код</p>
+              </div>
+              <div class="advantage advantage--third">
+                  <p class="advantage__icon" style="background-position: -369px 0px;"></p>
+                  <p class="advantage__text">Адаптивная<br> верстка</p>
+              </div>
+              <div class="advantage">
+                  <p class="advantage__icon" style="background-position: -548px 0px;"></p>
+                  <p class="advantage__text">Индивидуальный<br> подход</p>
+              </div>
+          </div>
+          <a href="#!" class="open-project-btn pop-up-form-open">Открыть проект</a>
+      </div>
+  </section>
+
+  <!--why unruled end-->
+
+  <!--portfolio start-->
+
+  <section class="portfolio-section">
+      <div class="container">
+          <h2 class="portfolio-section__title">ПОРТФОЛИО</h2>
+
+          <div class="portfolio">
+              <div class="portfolio__project project">
+                  <p class="project__img shadow" style="background-image:url('img/project-1.jpg')"></p>
+                  <div class="project__info">
+                      <p class="project__info__title">Название проекта</p>
+                      <p class="project__info__text">Lorem ipsum dolor sit amet,<br> consectetur adipisicing elit, sed do<br> eiusmod tempor incididunt
+                          ut labore<br> et dolore magna aliqua. Ut enim ad<br> minim veniam, quis nostrud</p>
+                      <p class="project__btns">
+                          <a href="#" class="project__btn project__btn-more">Посмотреть</a>
+                          <a href="#" class="project__btn project__btn-buy pop-up-form-open"></a>
+                      </p>
+                  </div>
+              </div>
+              <div class="portfolio__project project">
+                  <p class="project__img shadow" style="background-image:url('img/project-2.jpg')"></p>
+                  <div class="project__info">
+                      <p class="project__info__title">Название проекта</p>
+                      <p class="project__info__text">Lorem ipsum dolor sit amet,<br> consectetur adipisicing elit, sed do<br> eiusmod tempor incididunt
+                          ut labore<br> et dolore magna aliqua. Ut enim ad<br> minim veniam, quis nostrud</p>
+                      <p class="project__btns">
+                          <a href="#" class="project__btn project__btn-more">Посмотреть</a>
+                          <a href="#" class="project__btn project__btn-buy pop-up-form-open"></a>
+                      </p>
+                  </div>
+              </div>
+              <div class="portfolio__project project">
+                  <p class="project__img shadow" style="background-image:url('img/project-3.jpg')"></p>
+                  <div class="project__info">
+                      <p class="project__info__title">Название проекта</p>
+                      <p class="project__info__text">Lorem ipsum dolor sit amet,<br> consectetur adipisicing elit, sed do<br> eiusmod tempor incididunt
+                          ut labore<br> et dolore magna aliqua. Ut enim ad<br> minim veniam, quis nostrud</p>
+                      <p class="project__btns">
+                          <a href="#" class="project__btn project__btn-more">Посмотреть</a>
+                          <a href="#" class="project__btn project__btn-buy pop-up-form-open"></a>
+                      </p>
+                  </div>
+              </div>
+
+              <a href="#" class="portfolio__btn-more">Смотреть еще</a>
+          </div>
+
+      </div>
+  </section>
+
+  <!--portfolio end-->
+
+  <!--team section start-->
+
+  <section class="team-section">
+      <div class="container">
+          <div class="team-panel">
+              <div class="team-panel__nav">
+                  <a href="#!" class="team-panel__nav__link"></a>
+                  <a href="#!" class="team-panel__nav__link"></a>
+                  <a href="#!" class="team-panel__nav__link"></a>
+                  <a href="#!" class="team-panel__nav__link"></a>
+                  <a href="#!" class="team-panel__nav__link"></a>
+              </div>
+              <div class="team-members-panel">
+                  <div class="team-members-panel__group">
+                      <a href="#!" class="member">Иванов Иван</a>
+                      <a href="#!" class="member">Иванов Иван</a>
+                  </div>
+                  <div class="team-members-panel__group">
+                      <a href="#!" class="member">Иванов Иван</a>
+                      <a href="#!" class="member">Иванов Иван</a>
+                  </div>
+                  <div class="team-members-panel__group">
+                      <a href="#!" class="member">Иванов Иван</a>
+                      <a href="#!" class="member">Иванов Иван</a>
+                  </div>
+              </div>
+          </div>
+
+          <!--member profile start-->
+
+          <div class="member-profile">
+              <div class="member-profile__decs profile-desc">
+                  <p class="profile-desc__title profile-desc__title--model">Модель: </p>
+                  <p class="profile-desc__text profile-desc__text--model">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor Excepteur sint </p>
+                  <p class="profile-desc__title profile-desc__title--mission">Предназначение: </p>
+                  <p class="profile-desc__text profile-desc__text--mission">должность</p>
+                  <p class="profile-desc__title profile-desc__title--description">Описание: </p>
+                  <p class="profile-desc__text profile-desc__text--description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor Excepteur sint<br> occade
+                      omnis onsectetur, adipisci velit, sed quia non numquam eius modi </p>
+              </div>
+
+              <div class="member-profile__pic"><img src="{% static '/img/member-pic.jpg' %}" alt="member"></div>
+              <div class="member-profile__powers">
+                  <p class="member-profile__power-title">Сила</p>
+                  <div class="member-profile__power">
+                      <p class="member-profile__power__hits">300</p>
+                      <p class="member-profile__power__text">Часов<br> дизайна</p>
+                  </div>
+
+                  <div class="member-profile__socials">
+                      <a href="#!" class="member-profile__socials__link member-profile__socials__link--fb"></a>
+                      <a href="#!" class="member-profile__socials__link member-profile__socials__link--twitter"></a>
+                      <a href="#!" class="member-profile__socials__link member-profile__socials__link--linkedin"></a>
+                  </div>
+              </div>
+          </div>
+
+          <!--member profile end-->
+      </div>
+  </section>
+
+  <!--team section end-->
+{% endblock %}
