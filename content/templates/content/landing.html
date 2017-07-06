@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% load static from staticfiles %}
 
+{% block bot_header %}
+  <li class="masonic-eye" id="bot-open"><a href="#"></a></li>
+{% endblock %}
+
 {% block content %}
+  {% include 'bot/bot.html' with bot=conf.bot_question %}
   <!--history block start-->
   <section class="history-section">
       <div class="container">
@@ -217,4 +222,46 @@
   </section>
 
   <!--team section end-->
+
+      <!--pop-up form start-->
+
+    <section class="popup">
+        <div class="popup__form-wrap">
+            <a href="#!" class="popup__close">x</a>
+
+            <form action="" class="popup-form">
+                <div class="popup-form__input-wrap">
+                    <p class="popup-form__error error-hide"><span>Незаполненое поле</span></p>
+                    <p><input type="text" class="popup-form__input" name="name" placeholder="Ваше имя"></p>
+                </div>
+
+                <div class="popup-form__input-wrap">
+                    <p class="popup-form__error error-hide"><span>Неверно введены данные</span></p>
+                    <p><input type="text" class="popup-form__input" name="phoneoremail" placeholder="Ваш телефон или e-mail"></p>
+                </div>
+
+                <div class="popup-form__input-wrap">
+                    <p class="popup-form__error error-hide"><span>Незаполненое поле</span></p>
+                    <p><textarea type="text" class="popup-form__input popup-form__input--textarea" name="projectdesc" placeholder="Описание проекта"></textarea></p>
+                </div>
+
+                <div class="popup-form__input-wrap">
+                    <p class="popup-form__upload-desc">Прикрепить Бизнес Требования / Техническое задание</p>
+                    <div class="popup-form__upload-wrap">
+                        <label for="uploadfile" class="popup-form__input-upload-label"></label>
+                        <input type="file" class="popup-form__input-upload" name="uploadfile" id="uploadfile">
+                        <div class="popup-form__upload-file-name"></div>
+                    </div>
+                </div>
+
+                <div class="popup-form__input-wrap popup-form__input-wrap-submit">
+                    <p class="popup-form__error error-hide"><span>Ошибка формы</span></p>
+                    <p><input type="submit" class="popup-form__input popup-form__input-submit" name="submit" value="Отправить"></p>
+                </div>
+
+            </form>
+        </div>
+    </section>
+
+  <!--pop-up form end-->
 {% endblock %}

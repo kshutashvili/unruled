@@ -1,0 +1,68 @@
+
+<div class="bot-section" id="bot">
+  <section class="greeting shadow">
+      <div class="container">
+          <div class="left-block">
+              <h1>добрый день!</h1>
+              <h2>
+                  Вас приветствует</br> {{ bot.person.name }}
+              </h2>
+              <p>{{ bot.person.greeting }}</p>
+          </div>
+          <div class="right-block">
+              <p>{{ bot.title }}</p>
+            <ul>
+              {% for answer in bot.answers.all %}
+                <li><a href="#" data-description='{{ answer.description|safe }}'>{{ answer.title }}</a></li>
+              {% endfor %}
+              </ul>
+              <a href="#" id="bot-disable-btn">Выключить бота</a>
+          </div>
+      </div>
+  </section>
+  <div class="instruction">
+      <div class="container">
+          <div class="steps">
+              <div class="steps__step">Ответьте<br> на вопросы</div>
+              <div class="steps__step">Получите<br> бонус</div>
+              <div class="steps__step">Откройте<br> проект</div>
+              <div class="steps__step">Получите<br> результат</div>
+          </div>
+          <div class="instruction__img"></div>
+      </div>
+  </div>
+</div>
+
+<!--bot section with form-->
+<div class="bot-section bot-form-section" id="bot-form" style="display: none;">
+  <section class="greeting shadow">
+      <div class="container">
+          <div class="left-block">
+              <h1>Спасибо за Ваш ответ!</h1>
+              <h2>Оставьте контакты</h2>
+              <p>и с Вами свяжется наш сотрудник!</p>
+          </div>
+          <div class="right-block">
+              <p class="bot-form-title">Получить Просчет проекта</p>
+              <form action="" class="bot-form">
+                  <p><input type="text" class="bot-form__input bot-form__input--name" name="name" placeholder="Ваше имя"></p>
+                  <p><input type="text" class="bot-form__input bot-form__input--contact" name="contact" placeholder="Ваш номер или e-mail"></p>
+
+                  <p><input type="submit" class="bot-form__input bot-form__submit" value="Отправить" id="bot-form-submit"></p>
+
+              </form>
+          </div>
+      </div>
+  </section>
+  <div class="instruction">
+      <div class="container">
+          <div class="steps">
+              <div class="steps__step">Ответьте<br> на вопросы</div>
+              <div class="steps__step">Получите<br> бонус</div>
+              <div class="steps__step">Откройте<br> проект</div>
+              <div class="steps__step">Получите<br> результат</div>
+          </div>
+          <div class="instruction__img"></div>
+      </div>
+  </div>
+</div>

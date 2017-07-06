@@ -8,6 +8,7 @@ function botFunc() {
     var $bot = $("#bot");
     var $botOpen = $("#bot-open");
     var $botForm = $("#bot-form");
+    var $botFormTitle = $(".bot-form-title:first");
     var $optionsList = $(".right-block>ul li>a");
     var $botSubmit = $("#bot-form-submit");
 
@@ -36,6 +37,7 @@ function botFunc() {
 
             $bot.hide();
             $botForm.show();
+            $botFormTitle.html($(this).data("description"));
             leftMnu();
         });
     });
@@ -92,8 +94,7 @@ $(document).ready(function () {
 function leftMnu() {
     var $toplineHeight = $(".top-line").height();
     var $leftMnu = $(".left-menu");
-    var $leftMnuOffset
-    console.log($leftMnu.offset());
+    var $leftMnuOffset;
 
     if ($leftMnu.offset() === undefined) {
         return

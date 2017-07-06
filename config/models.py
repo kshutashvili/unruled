@@ -4,13 +4,15 @@ from __future__ import unicode_literals
 from django.db import models
 
 from solo.models import SingletonModel
+from bot.models import BotQuestion
 
 
 class SiteConfiguration(SingletonModel):
     class Meta:
         verbose_name = "Конфигурация сайта"
 
-    brand_name = models.CharField('Название компании', max_length=70,
+    brand_name = models.CharField('Название компании',
+                                  max_length=70,
                                   default='Unruled Lab_')
 
     phone = models.CharField(
@@ -28,6 +30,10 @@ class SiteConfiguration(SingletonModel):
         max_length=128,
         blank=True
     )
+    bot_question = models.ForeignKey(BotQuestion,
+                                     verbose_name='Вопрос бота',
+                                     blank=True,
+                                     null=True)
 
     def __unicode__(self):
         return "Конфигурация сайта"
