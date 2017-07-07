@@ -70,7 +70,8 @@ class MenuItem(models.Model):
     linked_model = models.ForeignKey(ContentType,
                                      verbose_name="Тип контента",
                                      help_text="Определяет индикатор",
-                                     blank=True)
+                                     blank=True,
+                                     null=True)
 
     def __unicode__(self):
         return self.title

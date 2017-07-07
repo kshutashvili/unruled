@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('url', models.CharField(max_length=120, verbose_name='\u0421\u0441\u044b\u043b\u043a\u0430')),
                 ('title', models.CharField(max_length=255, verbose_name='\u041d\u0430\u0437\u0432\u0430\u043d\u0438\u0435')),
-                ('linked_model', models.ForeignKey(blank=True, help_text='\u041e\u043f\u0440\u0435\u0434\u0435\u043b\u044f\u0435\u0442 \u0438\u043d\u0434\u0438\u043a\u0430\u0442\u043e\u0440', on_delete=django.db.models.deletion.CASCADE, to='contenttypes.ContentType', verbose_name='\u0422\u0438\u043f \u043a\u043e\u043d\u0442\u0435\u043d\u0442\u0430')),
+                ('linked_model', models.ForeignKey(blank=True, null=True, help_text='\u041e\u043f\u0440\u0435\u0434\u0435\u043b\u044f\u0435\u0442 \u0438\u043d\u0434\u0438\u043a\u0430\u0442\u043e\u0440', on_delete=django.db.models.deletion.CASCADE, to='contenttypes.ContentType', verbose_name='\u0422\u0438\u043f \u043a\u043e\u043d\u0442\u0435\u043d\u0442\u0430')),
             ],
             options={
                 'verbose_name': '\u041f\u0443\u043d\u043a\u0442 \u043c\u0435\u043d\u044e',
