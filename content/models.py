@@ -27,3 +27,26 @@ class ExtraBlock(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class Portfolio(models.Model):
+
+    name = models.CharField("Имя клиента", max_length=255)
+    url = models.URLField("Ссылка на сайт")
+    release_date = models.DateField("Дата релиза")
+    short_description = models.TextField("Краткое описание проекта")
+    detailed_description = models.TextField("Подробное описание проекта")
+
+    def __unicode__(self):
+        return self.name
+
+
+class News(models.Model):
+
+    title = models.CharField("Заголовок", max_length=255)
+    short_content = models.TextField("Краткое содержание")
+    full_content = models.TextField("Полное содержание")
+    created_dt = models.DateTimeField("Дата создания", auto_now_add=True)
+
+    def __unicode__(self):
+        return self.title

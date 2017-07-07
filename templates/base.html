@@ -1,6 +1,7 @@
 {% load static from staticfiles %}
 {% load get_solo from solo_tags %}
 {% get_solo 'config.SiteConfiguration' as conf %}
+{% load counters %}
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -24,8 +25,8 @@
       <div class="top-line shadow">
           <div class="container">
               <div class="top-menu">
-                  <a href="#!" class="logo"></a>
-                  <p class="top-menu__title">Rule The Rules</p>
+                  <a href="/" class="logo"></a>
+                  <p class="top-menu__title">{{ conf.about_slogan }}</p>
                   <ul class="menu-wrap">
                       <li class="menu">
                           <a href="#">Меню</a>
@@ -33,25 +34,24 @@
                               <li>
                                   <a href="#">История</a>
                                   <a href="#">Клиенты</a>
-                                  <a href="#" target="_blank">Портфолио <span>15</span></a>
+                                  <a href="#" target="_blank">Портфолио <span>{% count_portfolio %}</span></a>
                                   <a href="#">Команда</a>
                                   <a href="#" target="_blank">Контакты</a>
                               </li>
 
                               <li>
-                                  <a href="#">Новости <span>7</span></a>
+                                  <a href="#">Новости <span>{% count_news %}</span></a>
                                   <a href="#">Вакансии <span>3</span></a>
                                   <a href="#">Технологии</a>
                                   <a href="#">Документы</a>
                               </li>
                           </ul>
                       </li>
-                      <li class="menu-counter"><a href="#">0</a></li>
+                      <li class="menu-counter"><a href="#">{% count_portfolio %}</a></li>
+                      <li class="menu-counter"><a href="#">{% count_news %}</a></li>
                       {% block bot_header %}{% endblock %}
                   </ul>
               </div>
-
-
           </div>
       </div>
   </div>
