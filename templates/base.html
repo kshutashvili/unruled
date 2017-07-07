@@ -32,18 +32,9 @@
                           <a href="#">Меню</a>
                           <ul class="shadow">
                               <li>
-                                  <a href="#">История</a>
-                                  <a href="#">Клиенты</a>
-                                  <a href="#" target="_blank">Портфолио <span>{% count_portfolio %}</span></a>
-                                  <a href="#">Команда</a>
-                                  <a href="#" target="_blank">Контакты</a>
-                              </li>
-
-                              <li>
-                                  <a href="#">Новости <span>{% count_news %}</span></a>
-                                  <a href="#">Вакансии <span>3</span></a>
-                                  <a href="#">Технологии</a>
-                                  <a href="#">Документы</a>
+                                  {% for item in menu_items %}
+                                  <a href="{{ item.url }}">{{ item.title }}{% if item.indicator != None %}<span>{{ item.indicator }}</span>{% endif %}</a>
+                                  {% endfor %}
                               </li>
                           </ul>
                       </li>

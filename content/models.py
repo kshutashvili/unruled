@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.contrib.contenttypes.models import ContentType
 from ckeditor.fields import RichTextField
 
 
@@ -41,6 +42,11 @@ class Portfolio(models.Model):
         return self.name
 
 
+class NewsManager(models.Manager):
+    def indicator(self):
+        return self.count()
+
+
 class News(models.Model):
 
     title = models.CharField("Заголовок", max_length=255)
@@ -48,5 +54,30 @@ class News(models.Model):
     full_content = models.TextField("Полное содержание")
     created_dt = models.DateTimeField("Дата создания", auto_now_add=True)
 
+    objects = NewsManager()
+
     def __unicode__(self):
         return self.title
+
+
+class MenuItem(models.Model):
+    class Meta:
+        verbose_name = "Пункт меню"
+        verbose_name_plural = "Пункты меню"
+
+    url = models.CharField("Ссылка", max_length=120)
+    title = models.CharField("Название", max_length=255)
+    linked_model = models.ForeignKey(ContentType,
+                                     verbose_name="Тип контента",
+                                     help_text="Определяет индикатор",
+                                     blank=True)
+
+    def __unicode__(self):
+        return self.title
+
+    @property
+    def indicator(self):
+        try:
+            return self.linked_model.model_class().objects.indicator()
+        except AttributeError:
+            return None
