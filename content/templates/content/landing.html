@@ -7,59 +7,64 @@
 
 {% block content %}
   {% include 'bot/bot.html' with bot=conf.bot_question %}
-  <!--history block start-->
+
   <section class="history-section">
-      <div class="container">
-          <div class="left-menu">
-              <nav>
-                  <a href="#" target="_blank">История</a>
-                  <a href="#">Клиенты</a>
-                  <a href="#" target="_blank">Портфолио</a>
-                  <a href="#" class="left-menu__link">Команда</a>
-                  <a href="#" target="_blank">Контакты</a>
-              </nav>
-          </div>
-          <div class="tagline">
-              <p><span></span>Lorem ipsum dolor sit amet, consectetur </p>
-              <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor </h2>
-          </div>
-          <hr width="2px" color="#fff" size='429px'>
-          <div class="history">
-              <h2>ИСТОРИЯ</h2>
-
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua. Ut enim ad minim veniam,<br> quis nostrud exercitation ullamco laboris nisi ut aliquip
-                  ex ea commodo consequat. </p>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                  sint occaecat cupidatat non proident,<br> sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-              <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
-                  aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae </p>
-          </div>
-
-          <p class="unruled-in-numbers">Unruled в цифрах</p>
-          <div class="statistics">
-              <div class="statistics__block">
-                  <p>300</p>
-                  <p>Часов<br> дизайна</p>
-              </div>
-              <div class="statistics__block">
-                  <p>500</p>
-                  <p>Часов<br> кода</p>
-              </div>
-              <div class="statistics__block">
-                  <p>1200</p>
-                  <p>Часов<br> управления</p>
-              </div>
-              <div class="statistics__block">
-                  <p>2300</p>
-                  <p>Часов<br> верстки</p>
-              </div>
-          </div>
+    <div class="container">
+      <div class="left-menu">
+        <nav>
+            {% if conf.show_about %}<a href="#" target="_blank">История</a> {% endif %}
+            {% if conf.show_clients %}<a href="#">Клиенты</a> {% endif %}
+            {% if conf.show_portfolio %}<a href="#" target="_blank">Портфолио</a> {% endif %}
+            {% if conf.show_team %}<a href="#" class="left-menu__link">Команда</a> {% endif %}
+            {% if conf.show_contacts %}<a href="#" target="_blank">Контакты</a> {% endif %}
+        </nav>
       </div>
-  </section>
-  <!--history block end-->
 
+    {% if conf.show_about %}
+    <!--history block start-->
+    <div class="tagline">
+        <p><span></span>Lorem ipsum dolor sit amet, consectetur </p>
+        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor </h2>
+    </div>
+    <hr width="2px" color="#fff" size='429px'>
+    <div class="history">
+        <h2>ИСТОРИЯ</h2>
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna aliqua. Ut enim ad minim veniam,<br> quis nostrud exercitation ullamco laboris nisi ut aliquip
+            ex ea commodo consequat. </p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+            sint occaecat cupidatat non proident,<br> sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
+            aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae </p>
+    </div>
+
+    <p class="unruled-in-numbers">Unruled в цифрах</p>
+    <div class="statistics">
+        <div class="statistics__block">
+            <p>300</p>
+            <p>Часов<br> дизайна</p>
+        </div>
+        <div class="statistics__block">
+            <p>500</p>
+            <p>Часов<br> кода</p>
+        </div>
+        <div class="statistics__block">
+            <p>1200</p>
+            <p>Часов<br> управления</p>
+        </div>
+        <div class="statistics__block">
+            <p>2300</p>
+            <p>Часов<br> верстки</p>
+        </div>
+    </div>
+    <!--history block end-->
+    {% endif %}
+  </div>
+  </section>
+
+  {% if conf.show_clients %}
   <!--clients start-->
   <section class="clients-section">
       <div class="container">
@@ -78,7 +83,10 @@
       </div>
   </section>
   <!--clients end-->
+  {% endif %}
 
+
+  {% if conf.show_why_unruled %}
   <!--why unruled start-->
 
   <section class="unruled">
@@ -107,7 +115,10 @@
   </section>
 
   <!--why unruled end-->
+  {% endif %}
 
+
+  {% if conf.show_portfolio %}
   <!--portfolio start-->
 
   <section class="portfolio-section">
@@ -159,7 +170,9 @@
   </section>
 
   <!--portfolio end-->
+  {% endif %}
 
+  {% if conf.show_team %}
   <!--team section start-->
 
   <section class="team-section">
@@ -222,7 +235,29 @@
   </section>
 
   <!--team section end-->
+  {% endif %}
 
+  {% if conf.show_contacts %}
+  <!--contacts start-->
+  <section class="contacts-section">
+
+    <!--google map start-->
+    <section class="google-map">
+        <div class="map" id="goolge-map"></div>
+    </section>
+    <!--google map end-->
+
+  </section>
+  <!--contacts end-->
+  {% endif %}
+
+  {% if extra_blocks %}
+    {% for extra_block in extra_blocks %}
+      {{ extra_block.html|safe }}
+    {% endfor %}
+  {% endif %}
+
+  {% if conf.show_why_unruled %}
       <!--pop-up form start-->
 
     <section class="popup">
@@ -264,4 +299,5 @@
     </section>
 
   <!--pop-up form end-->
+  {% endif %}
 {% endblock %}
