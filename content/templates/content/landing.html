@@ -97,49 +97,26 @@
 
   {% if conf.show_portfolio %}
   <!--portfolio start-->
+  <!-- TODO: styling -->
   <section id="portfolio" class="portfolio-section">
       <div class="container">
           <h2 class="portfolio-section__title">ПОРТФОЛИО</h2>
 
           <div class="portfolio">
+              {% for item in portfolio_list %}
               <div class="portfolio__project project">
-                  <p class="project__img shadow" style="background-image:url({% static 'img/project-1.jpg' %})"></p>
+                  <p class="project__img shadow" style="background-image:url({{ item.image.url }})"></p>
                   <div class="project__info">
-                      <p class="project__info__title">Название проекта</p>
-                      <p class="project__info__text">Lorem ipsum dolor sit amet,<br> consectetur adipisicing elit, sed do<br> eiusmod tempor incididunt
-                          ut labore<br> et dolore magna aliqua. Ut enim ad<br> minim veniam, quis nostrud</p>
+                      <p class="project__info__title">{{ item.name }}</p>
+                      <p class="project__info__text">{{ item.short_description }}</p>
                       <p class="project__btns">
-                          <a href="#" class="project__btn project__btn-more">Посмотреть</a>
-                          <a href="#" class="project__btn project__btn-buy pop-up-form-open"></a>
+                          <a href="{{ item.get_absolute_url }}" class="project__btn project__btn-more">Посмотреть</a>
                       </p>
                   </div>
               </div>
-              <div class="portfolio__project project">
-                  <p class="project__img shadow" style="background-image:url({% static 'img/project-2.jpg' %})"></p>
-                  <div class="project__info">
-                      <p class="project__info__title">Название проекта</p>
-                      <p class="project__info__text">Lorem ipsum dolor sit amet,<br> consectetur adipisicing elit, sed do<br> eiusmod tempor incididunt
-                          ut labore<br> et dolore magna aliqua. Ut enim ad<br> minim veniam, quis nostrud</p>
-                      <p class="project__btns">
-                          <a href="#" class="project__btn project__btn-more">Посмотреть</a>
-                          <a href="#" class="project__btn project__btn-buy pop-up-form-open"></a>
-                      </p>
-                  </div>
-              </div>
-              <div class="portfolio__project project">
-                  <p class="project__img shadow" style="background-image:url({% static 'img/project-3.jpg' %})"></p>
-                  <div class="project__info">
-                      <p class="project__info__title">Название проекта</p>
-                      <p class="project__info__text">Lorem ipsum dolor sit amet,<br> consectetur adipisicing elit, sed do<br> eiusmod tempor incididunt
-                          ut labore<br> et dolore magna aliqua. Ut enim ad<br> minim veniam, quis nostrud</p>
-                      <p class="project__btns">
-                          <a href="#" class="project__btn project__btn-more">Посмотреть</a>
-                          <a href="#" class="project__btn project__btn-buy pop-up-form-open"></a>
-                      </p>
-                  </div>
-              </div>
+            {% endfor %}
 
-              <a href="#" class="portfolio__btn-more">Смотреть еще</a>
+              <a href="/portfolio/" class="portfolio__btn-more">Смотреть еще</a>
           </div>
 
       </div>

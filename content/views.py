@@ -11,6 +11,7 @@ class LandingView(TemplateView):
         kwargs['unruled_numbers'] = UnruledNumbers.objects.all()
         kwargs['clients'] = Client.objects.all()
         kwargs['why_unruled'] = WhyUnruled.objects.all()
+        kwargs['portfolio_list'] = Portfolio.objects.last_added()
         return super(LandingView, self).get_context_data(**kwargs)
 
 

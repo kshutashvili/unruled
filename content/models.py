@@ -32,6 +32,10 @@ class ExtraBlock(models.Model):
 
 
 class PortfolioManager(models.Manager):
+
+    def last_added(self):
+        return self.all()[:3]
+
     def indicator(self):
         return self.count()
 
