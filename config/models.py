@@ -35,6 +35,8 @@ class SiteConfiguration(SingletonModel):
                                      blank=True,
                                      null=True)
 
+    block_trap_text = models.TextField('Текст блока-ловушки', blank=True)
+
     about_slogan = models.TextField('Слоган', blank=True)
     about_text = models.TextField('Текст о компании', blank=True)
 

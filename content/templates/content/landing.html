@@ -8,6 +8,15 @@
 {% block content %}
   {% include 'bot/bot.html' with bot=conf.bot_question %}
 
+  <!-- TODO: styling -->
+  {% if conf.block_trap_text %}
+  <section class="history-section">
+    <div class="container">
+      <p>{{ conf.block_trap_text }}</p>
+    </div>
+  </section>
+  {% endif %}
+
   <section class="history-section">
     <div class="container">
       <div class="left-menu">
