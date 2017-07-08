@@ -100,3 +100,15 @@ class UnruledNumbers(models.Model):
 
     def __unicode__(self):
         return "{} {}".format(self.number, self.measure_unit)
+
+
+class Client(models.Model):
+    class Meta:
+        verbose_name = "Клиент"
+        verbose_name_plural = "Клиенты"
+
+    name = models.CharField("Название", max_length=255)
+    logo = models.ImageField("Логотип", upload_to="clients")
+
+    def __unicode__(self):
+        return self.name

@@ -2,7 +2,7 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from .models import ExtraBlock, MenuItem, UnruledNumbers
+from .models import ExtraBlock, MenuItem, UnruledNumbers, Client
 
 
 @admin.register(ExtraBlock)
@@ -20,4 +20,9 @@ class MenuItemAdmin(admin.ModelAdmin):
 
 @admin.register(UnruledNumbers)
 class UnruledNumbersAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Client)
+class ClientAdmin(admin.ModelAdmin):
     pass

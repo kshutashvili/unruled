@@ -56,19 +56,15 @@
   </section>
 
   {% if conf.show_clients %}
+  <!-- TODO: styling -->
   <!--clients start-->
   <section id="clients" class="clients-section">
       <div class="container">
           <h2 class="clients-section__title">НАШИ КЛИЕНТЫ</h2>
           <div class="clients-wrap">
-              <a href=# class="clients-section__client client shadow" style="background-position: 24px 29px;"></a>
-              <a href=# class="clients-section__client client  client--wide shadow" style="background-position: -137px 30px;"></a>
-              <a href=# class="clients-section__client client shadow" style="background-position: 24px 29px;"></a>
-              <a href=# class="clients-section__client client client--wide shadow" style="background-position: -137px 30px;"></a>
-              <a href=# class="clients-section__client client shadow" style="background-position: 24px 29px;"></a>
-              <a href=# class="clients-section__client client  client--wide shadow" style="background-position: -137px 30px;"></a>
-              <a href=# class="clients-section__client client shadow" style="background-position: 24px 29px;"></a>
-              <a href=# class="clients-section__client client client--wide shadow" style="background-position: -137px 30px;"></a>
+              {% for client in clients %}
+                <img src="{{ client.logo.url }}">
+              {% endfor %}
               <a href="#" class="more-clients-btn">Смотреть еще</a>
           </div>
       </div>
