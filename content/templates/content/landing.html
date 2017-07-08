@@ -75,27 +75,17 @@
 
   {% if conf.show_why_unruled %}
   <!--why unruled start-->
-
+  <!-- TODO: styling -->
   <section class="unruled">
       <div class="container">
           <h2 class="unruled__title">ПОЧЕМУ UNRULED</h2>
           <div class="advantages">
-              <div class="advantage advantage--first">
-                  <p class="advantage__icon"></p>
-                  <p class="advantage__text">НЕ шаблонный<br> дизайн</p>
-              </div>
-              <div class="advantage advantage--second">
-                  <p class="advantage__icon" style="background-position: -192px 0px;"></p>
-                  <p class="advantage__text">Чистый<br> код</p>
-              </div>
-              <div class="advantage advantage--third">
-                  <p class="advantage__icon" style="background-position: -369px 0px;"></p>
-                  <p class="advantage__text">Адаптивная<br> верстка</p>
-              </div>
+            {% for reason in why_unruled %}
               <div class="advantage">
-                  <p class="advantage__icon" style="background-position: -548px 0px;"></p>
-                  <p class="advantage__text">Индивидуальный<br> подход</p>
+                  <p><img src="{{ reason.icon.url }}"></p>
+                  <p class="advantage__text">{{ reason.text }}</p>
               </div>
+            {% endfor %}
           </div>
           <a href="#!" class="open-project-btn pop-up-form-open">Открыть проект</a>
       </div>

@@ -112,3 +112,14 @@ class Client(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class WhyUnruled(models.Model):
+    class Meta:
+        verbose_name = verbose_name_plural = 'Блок "Почему Unruled?"'
+
+    text = models.TextField("Подпись")
+    icon = models.ImageField("Иконка", upload_to="icons")
+
+    def __unicode__(self):
+        return self.text
