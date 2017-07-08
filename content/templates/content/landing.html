@@ -17,36 +17,27 @@
   </section>
   {% endif %}
 
+  <!-- TODO: styling, fixed header offset, anchor linking method -->
   <section class="history-section">
     <div class="container">
       <div class="left-menu">
         <nav>
-            {% if conf.show_about %}<a href="#" target="_blank">История</a> {% endif %}
-            {% if conf.show_clients %}<a href="#">Клиенты</a> {% endif %}
-            {% if conf.show_portfolio %}<a href="#" target="_blank">Портфолио</a> {% endif %}
-            {% if conf.show_team %}<a href="#" class="left-menu__link">Команда</a> {% endif %}
-            {% if conf.show_contacts %}<a href="#" target="_blank">Контакты</a> {% endif %}
+            {% if conf.show_about %}<a href="#history">История</a> {% endif %}
+            {% if conf.show_clients %}<a href="#clients">Клиенты</a> {% endif %}
+            {% if conf.show_portfolio %}<a href="#portfolio">Портфолио</a> {% endif %}
+            {% if conf.show_contacts %}<a href="#contacts">Контакты</a> {% endif %}
         </nav>
       </div>
 
     {% if conf.show_about %}
     <!--history block start-->
-    <div class="tagline">
-        <p><span></span>Lorem ipsum dolor sit amet, consectetur </p>
-        <h2>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor </h2>
+    <div id="history" class="tagline">
+        <p><span></span>{{ conf.about_slogan }}</p>
     </div>
     <hr width="2px" color="#fff" size='429px'>
     <div class="history">
         <h2>ИСТОРИЯ</h2>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Ut enim ad minim veniam,<br> quis nostrud exercitation ullamco laboris nisi ut aliquip
-            ex ea commodo consequat. </p>
-        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-            sint occaecat cupidatat non proident,<br> sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
-            aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae </p>
+        {{ conf.about_text }}
     </div>
 
     <p class="unruled-in-numbers">Unruled в цифрах</p>
@@ -75,7 +66,7 @@
 
   {% if conf.show_clients %}
   <!--clients start-->
-  <section class="clients-section">
+  <section id="clients" class="clients-section">
       <div class="container">
           <h2 class="clients-section__title">НАШИ КЛИЕНТЫ</h2>
           <div class="clients-wrap">
@@ -129,8 +120,7 @@
 
   {% if conf.show_portfolio %}
   <!--portfolio start-->
-
-  <section class="portfolio-section">
+  <section id="portfolio" class="portfolio-section">
       <div class="container">
           <h2 class="portfolio-section__title">ПОРТФОЛИО</h2>
 
@@ -248,7 +238,7 @@
 
   {% if conf.show_contacts %}
   <!--contacts start-->
-  <section class="contacts-section">
+  <section id="contacts" class="contacts-section">
 
     <!--google map start-->
     <section class="google-map">
