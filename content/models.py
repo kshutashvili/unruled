@@ -89,3 +89,14 @@ class MenuItem(models.Model):
             return self.linked_model.model_class().objects.indicator()
         except AttributeError:
             return None
+
+
+class UnruledNumbers(models.Model):
+    class Meta:
+        verbose_name = verbose_name_plural = "Unruled в цифрах"
+
+    number = models.IntegerField("Значение")
+    measure_unit = models.CharField("Единица измерения", max_length=120)
+
+    def __unicode__(self):
+        return "{} {}".format(self.number, self.measure_unit)

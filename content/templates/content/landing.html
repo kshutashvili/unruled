@@ -40,24 +40,15 @@
         {{ conf.about_text }}
     </div>
 
+    <!-- TODO: styling -->
     <p class="unruled-in-numbers">Unruled в цифрах</p>
     <div class="statistics">
+        {% for number in unruled_numbers %}
         <div class="statistics__block">
-            <p>300</p>
-            <p>Часов<br> дизайна</p>
+            <p>{{ number.number }}</p>
+            <p>{{ number.measure_unit }}</p>
         </div>
-        <div class="statistics__block">
-            <p>500</p>
-            <p>Часов<br> кода</p>
-        </div>
-        <div class="statistics__block">
-            <p>1200</p>
-            <p>Часов<br> управления</p>
-        </div>
-        <div class="statistics__block">
-            <p>2300</p>
-            <p>Часов<br> верстки</p>
-        </div>
+      {% endfor %}
     </div>
     <!--history block end-->
     {% endif %}

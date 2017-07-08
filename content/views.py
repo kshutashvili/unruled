@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.views.generic import TemplateView
-from .models import ExtraBlock
+from .models import ExtraBlock, UnruledNumbers
 
 
 class LandingView(TemplateView):
@@ -8,4 +8,5 @@ class LandingView(TemplateView):
 
     def get_context_data(self, **kwargs):
         kwargs['extra_blocks'] = ExtraBlock.objects.active()
+        kwargs['unruled_numbers'] = UnruledNumbers.objects.all()
         return super(LandingView, self).get_context_data(**kwargs)
