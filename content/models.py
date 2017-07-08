@@ -30,6 +30,11 @@ class ExtraBlock(models.Model):
         return self.name
 
 
+class PortfolioManager(models.Manager):
+    def indicator(self):
+        return self.count()
+
+
 class Portfolio(models.Model):
 
     name = models.CharField("Имя клиента", max_length=255)
@@ -37,6 +42,8 @@ class Portfolio(models.Model):
     release_date = models.DateField("Дата релиза")
     short_description = models.TextField("Краткое описание проекта")
     detailed_description = models.TextField("Подробное описание проекта")
+
+    objects = PortfolioManager()
 
     def __unicode__(self):
         return self.name
