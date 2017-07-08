@@ -1,11 +1,14 @@
 from django.conf.urls import url
-from django.conf import settings
-from django.contrib.staticfiles.urls import static
 
-from content.views import LandingView
+
+from content.views import LandingView, PortfolioListView, PortfolioDetailView
 from django.views.decorators.csrf import ensure_csrf_cookie
 
 
 urlpatterns = [
     url(r'^$', ensure_csrf_cookie(LandingView.as_view()), name='landing'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    url(r'^portfolio/$', PortfolioListView.as_view(), name='portfolio'),
+    url(r'^portfolio/(?P<pk>[0-9_-]+)/$',
+        PortfolioDetailView.as_view(),
+        name='portfolio_detail'),
+]

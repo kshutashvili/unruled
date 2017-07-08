@@ -2,7 +2,8 @@
 from __future__ import unicode_literals
 
 from django.contrib import admin
-from .models import ExtraBlock, MenuItem, UnruledNumbers, Client, WhyUnruled
+from .models import (ExtraBlock, MenuItem, UnruledNumbers,
+                     Client, WhyUnruled, Portfolio, PortfolioImage)
 
 
 @admin.register(ExtraBlock)
@@ -30,4 +31,14 @@ class ClientAdmin(admin.ModelAdmin):
 
 @admin.register(WhyUnruled)
 class WhyUnruledAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Portfolio)
+class PortfolioAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(PortfolioImage)
+class PortfolioImageAdmin(admin.ModelAdmin):
     pass

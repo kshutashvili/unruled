@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.urls import reverse
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from ckeditor.fields import RichTextField
@@ -36,9 +37,13 @@ class PortfolioManager(models.Manager):
 
 
 class Portfolio(models.Model):
+    class Meta:
+        ordering = ('-release_date',)
+        verbose_name = verbose_name_plural = "Портфолио"
 
     name = models.CharField("Имя клиента", max_length=255)
-    url = models.URLField("Ссылка на сайт")
+    image = models.ImageField("Скриншот", upload_to="portfolio", default="/img/not-found.png")
+    url = models.URLField("Ссылка на сайт", blank=True, null=True)
     release_date = models.DateField("Дата релиза")
     short_description = models.TextField("Краткое описание проекта")
     detailed_description = models.TextField("Подробное описание проекта")
@@ -47,6 +52,9 @@ class Portfolio(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('content:portfolio_detail', kwargs={"pk": self.id})
 
 
 class NewsManager(models.Manager):
@@ -123,3 +131,17 @@ class WhyUnruled(models.Model):
 
     def __unicode__(self):
         return self.text
+
+
+class PortfolioImage(models.Model):
+    class Meta:
+        verbose_name = "Изображение галереи портфолио"
+        verbose_name_plural = "Изображения галереи портфолио"
+
+    portfolio = models.ForeignKey(Portfolio,
+                                  related_name='images',
+                                  verbose_name="Портфолио")
+    image = models.ImageField("Картинка", upload_to="portfolio")
+
+    def __unicode__(self):
+        return '{} - {}'.format(self.portfolio.name, self.image.name)

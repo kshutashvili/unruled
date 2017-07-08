@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+<!-- TODO: template was not available in lt-unruled, styling, templating, image gallery -->
+{% block content %}
+  <!--portfolio start-->
+  <section class="portfolio-section portfolio-section--full">
+      <div class="container">
+          <div class="portfolio">
+            <p class="project__img shadow" style="background-image:url({{ portfolio.image.url }})"></p>
+            <div class="project__info">
+                <p class="project__info__title">{{ portfolio.name }}</p>
+                <p class="project__info__text"><a href="{{ portfolio.url }}"></a></p>
+                <p class="project__info__text">{{ portfolio.detailed_description }}</p>
+
+              {% for image in portfolio.images.all %}
+                <img src="{{ image.image.url }}">
+              {% endfor %}
+            </div>
+
+          </div>
+
+      </div>
+  </section>
+
+  <!--portfolio end-->
+{% endblock %}
