@@ -30,6 +30,12 @@ class SiteConfiguration(SingletonModel):
         max_length=128,
         blank=True
     )
+
+    google_maps_address = models.CharField(
+        'Адрес на карте',
+        max_length=255,
+        blank=True
+    )
     bot_question = models.ForeignKey(BotQuestion,
                                      verbose_name='Вопрос бота',
                                      blank=True,

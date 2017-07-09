@@ -120,20 +120,26 @@ $(document).ready(function () {
 });
 
 
+// TODO: rewrite cleaner
 (function () {
     //exec
     map();
 
+    var geocoder;
+    var mapObject;
+    var mapDiv;
 
     function map() {
 
         var myLatLng = { lat: 50.382126, lng: 30.478292 };
 
-        var mapId = document.getElementById("goolge-map");
+        mapDiv = document.getElementById("google-map");
         
-        if (!mapId) {
+        if (!mapDiv) {
             return;
         }
+        geocoder = new google.maps.Geocoder();
+
         var mapOptions = {
             center: new google.maps.LatLng(50.382126, 30.478292),
             zoom: 17,
@@ -141,16 +147,26 @@ $(document).ready(function () {
             scrollwheel: false
         };
 
-        var map = new google.maps.Map(mapId, mapOptions);
+        mapObject = new google.maps.Map(mapDiv, mapOptions);
+        codeAddress();
+    }
 
-        var marker = new google.maps.Marker({
-            position: myLatLng,
-            map: map,
-            title: "Голосіївський проспект, 132"
+    function codeAddress() {
+        var address = mapDiv.getAttribute('data-address');
+        geocoder.geocode({'address': address}, function (results, status) {
+            if (status == 'OK') {
+                mapObject.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: mapObject,
+                    position: results[0].geometry.location,
+                    title: results[0].formatted_address
+                });
+            } else {
+                alert('Geocode was not successful for the following reason: ' + status);
+            }
         });
+    }
 
-
-    };
 
 })()
 //open and close pop-up window with form
