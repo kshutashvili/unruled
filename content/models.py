@@ -149,3 +149,18 @@ class PortfolioImage(models.Model):
 
     def __unicode__(self):
         return '{} - {}'.format(self.portfolio.name, self.image.name)
+
+
+class Message(models.Model):
+    class Meta:
+        ordering = ['-created_dt']
+        verbose_name = 'Сообщение'
+        verbose_name_plural = 'Сообщения'
+
+    created_dt = models.DateTimeField('Время создания', auto_now_add=True)
+    name = models.CharField('Имя', max_length=50)
+    email = models.EmailField('Адрес электронной почты')
+    text = models.TextField('Текст сообщения')
+
+    def __unicode__(self):
+        return '{} {}'.format(self.created_dt, self.email)

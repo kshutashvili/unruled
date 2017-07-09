@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
+from django.shortcuts import render
 from django.views.generic import TemplateView, ListView, DetailView
-from .models import ExtraBlock, UnruledNumbers, Client, WhyUnruled, Portfolio
+from .models import (ExtraBlock, UnruledNumbers, Client, WhyUnruled,
+                     Portfolio)
+from .forms import MessageForm
 
 
 class LandingView(TemplateView):
@@ -26,3 +29,14 @@ class PortfolioDetailView(DetailView):
     model = Portfolio
     template_name = 'content/portfolio.html'
     context_object_name = 'portfolio'
+
+
+class ContactsView(TemplateView):
+    template_name = 'content/contacts.html'
+
+    def post(self, request):
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, self.template_name)
+        return render(request, self.template_name, {'form': form})

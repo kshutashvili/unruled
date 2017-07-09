@@ -200,6 +200,72 @@
     </section>
     <!--google map end-->
 
+    <!--contacts form start-->
+
+    <div class="form-container">
+        <div class="container">
+            <div class="form-wrap">
+                <form action="{% url 'content:contacts' %}" class="contact-us-form" method="POST">
+                    {% csrf_token %}
+                    <!--input name start-->
+
+                    <div class="contact-us-form__input-container">
+                        <div class="contact-us-form__input-wrap">
+                          {% if form.name.errors %}
+                          <p class="contact-us-form__input-wrap__vldtn-wrap"><span class="">Незаполненое поле</span></p>
+                          {% endif %}
+                          <p><input class="contact-us-form__input contact-us-form__input-name" type="text" name="name"
+                                  value="{{ form.name.value }}" placeholder="Имя"></p>
+                        </div>
+                    </div>
+
+                    <!--input name end-->
+
+                    <!--input email start-->
+
+                    <div class="contact-us-form__input-container">
+                        <div class="contact-us-form__input-wrap">
+                          {% if form.email.errors %}
+                          <p class="contact-us-form__input-wrap__vldtn-wrap"><span class="">Неправильно введен e-mail</span></p>
+                          {% endif %}
+                          <p><input class="contact-us-form__input contact-us-form__input-email" type="email" name="email"
+                                  value="{{ form.email.value }}" placeholder="E-mail"></p>
+                        </div>
+                    </div>
+
+                    <!--input email end-->
+
+                    <!--message textarea start-->
+
+                    <div class="contact-us-form__input-container">
+                        <div class="contact-us-form__input-wrap">
+                          {% if form.text.errors %}
+                          <p class="contact-us-form__input-wrap__vldtn-wrap"><span class="">Вы не ввели текст сообщения</span></p>
+                          {% endif %}
+                          <p><textarea class="contact-us-form__input contact-us-form__input-message" type="text" name="text"
+                                  placeholder="Ваше сообщение">{{ form.text.value }}</textarea></p>
+                        </div>
+                    </div>
+
+                    <!--message textarea end-->
+
+                    <!--form submit btn start-->
+
+                    <div class="contact-us-form__input-container">
+                        <div class="contact-us-form__input-wrap contact-us-form__input-wrap--submit">
+                            <p class="contact-us-form__input-wrap__vldtn-wrap error-hide"><span class="">Ошибка формы</span></p>
+                            <p><input class="contact-us-form__input contact-us-form__input-submit" type="submit"
+                                    value="Отправить"></p>
+                        </div>
+                    </div>
+
+                    <!--form submit btn end-->
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--contacts form end-->
   </section>
   <!--contacts end-->
   {% endif %}
