@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render
+from django.views.decorators.http import require_POST
+from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView
 from .models import (ExtraBlock, UnruledNumbers, Client, WhyUnruled,
                      Portfolio)
-from .forms import MessageForm
+from .forms import MessageForm, OrderForm
 
 
 class LandingView(TemplateView):
@@ -40,3 +41,13 @@ class ContactsView(TemplateView):
             form.save()
             return render(request, self.template_name)
         return render(request, self.template_name, {'form': form})
+
+
+@require_POST
+def order_create_view(request):
+    form = OrderForm(request.POST)
+
+    if form.is_valid():
+        form.save()
+
+    return redirect('content:landing')

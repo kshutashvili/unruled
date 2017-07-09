@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.contrib import admin
 from .models import (ExtraBlock, MenuItem, UnruledNumbers,
                      Client, WhyUnruled, Portfolio, PortfolioImage,
-                     Message)
+                     Message, Order)
 
 
 @admin.register(ExtraBlock)
@@ -48,3 +48,9 @@ class PortfolioImageAdmin(admin.ModelAdmin):
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
     pass
+
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('name', 'phone_or_email', 'created_dt')
+    readonly_fields = ('created_dt', )

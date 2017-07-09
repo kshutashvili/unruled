@@ -283,7 +283,8 @@
         <div class="popup__form-wrap">
             <a href="#!" class="popup__close">x</a>
 
-            <form action="" class="popup-form">
+            <form action="{% url 'content:create_order' %}" class="popup-form" method="POST">
+                {% csrf_token %}
                 <div class="popup-form__input-wrap">
                     <p class="popup-form__error error-hide"><span>Незаполненое поле</span></p>
                     <p><input type="text" class="popup-form__input" name="name" placeholder="Ваше имя"></p>
@@ -291,26 +292,26 @@
 
                 <div class="popup-form__input-wrap">
                     <p class="popup-form__error error-hide"><span>Неверно введены данные</span></p>
-                    <p><input type="text" class="popup-form__input" name="phoneoremail" placeholder="Ваш телефон или e-mail"></p>
+                    <p><input type="text" class="popup-form__input" name="phone_or_email" placeholder="Ваш телефон или e-mail"></p>
                 </div>
 
                 <div class="popup-form__input-wrap">
                     <p class="popup-form__error error-hide"><span>Незаполненое поле</span></p>
-                    <p><textarea type="text" class="popup-form__input popup-form__input--textarea" name="projectdesc" placeholder="Описание проекта"></textarea></p>
+                    <p><textarea type="text" class="popup-form__input popup-form__input--textarea" name="description" placeholder="Описание проекта"></textarea></p>
                 </div>
 
                 <div class="popup-form__input-wrap">
-                    <p class="popup-form__upload-desc">Прикрепить Бизнес Требования / Техническое задание</p>
+                    <p class="popup-form__upload-desc">Прикрепить Бизнес Требования / Техническое задание (макс. 5мб)</p>
                     <div class="popup-form__upload-wrap">
                         <label for="uploadfile" class="popup-form__input-upload-label"></label>
-                        <input type="file" class="popup-form__input-upload" name="uploadfile" id="uploadfile">
+                        <input type="file" class="popup-form__input-upload" name="attachment" id="uploadfile">
                         <div class="popup-form__upload-file-name"></div>
                     </div>
                 </div>
 
                 <div class="popup-form__input-wrap popup-form__input-wrap-submit">
                     <p class="popup-form__error error-hide"><span>Ошибка формы</span></p>
-                    <p><input type="submit" class="popup-form__input popup-form__input-submit" name="submit" value="Отправить"></p>
+                    <p><input type="submit" class="popup-form__input popup-form__input-submit" value="Отправить"></p>
                 </div>
 
             </form>

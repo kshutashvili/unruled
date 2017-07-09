@@ -164,3 +164,26 @@ class Message(models.Model):
 
     def __unicode__(self):
         return '{} {}'.format(self.created_dt, self.email)
+
+
+class Order(models.Model):
+    class Meta:
+        ordering = ('-created_dt',)
+        verbose_name = "Заказ"
+        verbose_name_plural = "Заказы"
+
+    name = models.CharField("Имя клиента",
+                            max_length=255)
+    phone_or_email = models.CharField("Телефон или e-mail",
+                                      max_length=255)
+
+    description = models.TextField("Описание проекта",
+                                   blank=True)
+    attachment = models.FileField("Требования/тех задание",
+                                  upload_to="orders",
+                                  blank=True)
+    created_dt = models.DateTimeField("Дата создания",
+                                      auto_now_add=True)
+
+    def __unicode__(self):
+        return '{} {}'.format(self.name, self.phone_or_email)
