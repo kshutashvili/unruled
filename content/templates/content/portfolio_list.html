@@ -21,13 +21,13 @@
             <!-- TODO: styling inactive links -->
             {% if is_paginated %}
               <div class="portfolio__navigation">
-                <a href="#!" class="portfolio__navigation__arrows portfolio__navigation__arrows--prev {% if not page_obj.has_previous %}portfolio__navigation__arrows--inactive{% endif %}"></a>
+                <a href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% endif %}" class="portfolio__navigation__arrows portfolio__navigation__arrows--prev {% if not page_obj.has_previous %}portfolio__navigation__arrows--inactive{% endif %}"></a>
               <div class="portfolio__pagination">
                 {% for page in paginator.page_range %}
-                <a href="#!" class="portfolio__pagination-link portfolio__pagination{% if page_obj.number == page %}--active{% endif %}">{{ page }}</a>
+                <a href="?page={{ page }}" class="portfolio__pagination-link portfolio__pagination{% if page_obj.number == page %}--active{% endif %}">{{ page }}</a>
                 {% endfor %}
               </div>
-                <a href="#!" class="portfolio__navigation__arrows portfolio__navigation__arrows--next {% if not page_obj.has_next %}portfolio__navigation__arrows--inactive{% endif %}"></a>
+                <a href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% endif %}" class="portfolio__navigation__arrows portfolio__navigation__arrows--next {% if not page_obj.has_next %}portfolio__navigation__arrows--inactive{% endif %}"></a>
               </div>
             {% endif %}
           </div>

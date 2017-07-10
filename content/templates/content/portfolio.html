@@ -1,26 +1,57 @@
 {% extends "base.html" %}
 
-<!-- TODO: template was not available in lt-unruled, styling, templating, image gallery -->
 {% block content %}
-  <!--portfolio start-->
-  <section class="portfolio-section portfolio-section--full">
-      <div class="container">
-          <div class="portfolio">
-            <p class="project__img shadow" style="background-image:url({{ portfolio.image.url }})"></p>
-            <div class="project__info">
-                <p class="project__info__title">{{ portfolio.name }}</p>
-                <p class="project__info__text"><a href="{{ portfolio.url }}"></a></p>
-                <p class="project__info__text">{{ portfolio.detailed_description }}</p>
+  <!--project description section start-->
 
-              {% for image in portfolio.images.all %}
-                <img src="{{ image.image.url }}">
-              {% endfor %}
-            </div>
+  <section class="gallery-section">
+      <div class="gallery-section__desc-bg">
+          <div class="container">
+
+              <div class="gallery-section__desc-block desc-block">
+                  <p class="desc-block__release">Дата релиза {{ portfolio.release_date }}</p>
+                  <h1>{{ portfolio.name }}</h1>
+                  {% if portfolio.url %}
+                  <h2>{{ portfolio.url }}</h2>
+                  {% endif %}
+
+                  <div>
+                      <p><b>Краткое описание проекта:</b> {{ portfolio.short_description }}
+                      </p>
+
+                      <p><b>Подробное описание проекта:</b> {{ portfolio.detailed_description }}
+                      </p>
+                  </div>
+              </div>
 
           </div>
-
       </div>
-  </section>
 
-  <!--portfolio end-->
+      <!--screenshots start-->
+      <div class="gallery-screenshots">
+          <div class="container">
+              {% for image in portfolio.images.all %}
+                <div class="screentshot">
+                  <a href="#!" class="screenshot-btn"><img src="{{ image.image.url }}" alt="screenshot"></a>
+                </div>
+              {% endfor %}
+          </div>
+          <!--screenshot pop up start-->
+
+          <div class="screenshot-popup">
+              <div class="container">
+                  <div class="screenshot-popup__img-wrap">
+                      <a href="#!" class="screenshot-popup__close">X</a>
+                      <div class="screenshot-popup__img">
+                          <img src="" alt="big-screentshot">
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!--screenshot pop up end-->
+      </div>
+      <!--screenshots end-->
+
+  </section>
+  <!--project description section end-->
 {% endblock %}
