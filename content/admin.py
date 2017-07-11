@@ -5,6 +5,7 @@ from django.contrib import admin
 from .models import (ExtraBlock, MenuItem, UnruledNumbers,
                      Client, WhyUnruled, Portfolio, PortfolioImage,
                      Message, Order)
+from mptt.admin import MPTTModelAdmin
 
 
 @admin.register(ExtraBlock)
@@ -15,7 +16,7 @@ class ExtraBlockAdmin(admin.ModelAdmin):
 
 
 @admin.register(MenuItem)
-class MenuItemAdmin(admin.ModelAdmin):
+class MenuItemAdmin(MPTTModelAdmin):
 
     list_display = ('title', 'position')
     list_filter = ('position', )

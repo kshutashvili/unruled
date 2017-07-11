@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'solo',
     'ckeditor',
+    'mptt',
     # User
     'config',
     'content',

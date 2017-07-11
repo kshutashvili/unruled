@@ -82,20 +82,17 @@
             <a href="#!" class="social social__behance"></a>
         </div>
         <div class="footer__nav">
-
+          <!-- TODO: generic styling -->
+          {% for item in menu_items.footer_items %}
             <div class="about-company">
-                <h2 class="footer__nav__title about-company__title"><a href="#!">О КОМПАНИИ</a></h2>
-                <a href="#!" class="footer__nav__link">История</a>
-                <a href="#!" class="footer__nav__link">Клиенты</a>
-                <a href="{% url 'content:portfolio' %}" class="footer__nav__link">Портфолио &nbsp <span>{{ portfolio_indicator }}</span></a>
-                <a href="{% url 'content:contacts' %}" class="footer__nav__link">Контакты</a>
-            </div>
+              <h2 class="footer__nav__title"><a href="{{ item.url }}">{{ item.title }}</a></h2>
+              {% for child in item.get_children %}
+              <a href="{{ child.url }}" class="footer__nav__link">{{ child.title }} {% if child.indicator != None %}<span>{{ child.indicator }}</span>{% endif %}</a>
 
-            <div class="to-clients">
-                <h2 class="footer__nav__title to-clients__title"><a href="#!">КЛИЕНТАМ</a></h2>
-                <a href="#!" class="footer__nav__link">Заказать звонок</a>
-                <a href="#!" class="footer__nav__link">Открыть проект</a>
+              {% endfor %}
             </div>
+          {% endfor %}
+
         </div>
     </div>
 </footer>

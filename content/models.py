@@ -6,6 +6,7 @@ from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from ckeditor.fields import RichTextField
 import datetime
+from mptt.models import MPTTModel, TreeForeignKey, TreeManager
 
 
 class ExtraBlockQuerySet(models.QuerySet):
@@ -74,7 +75,7 @@ class MenuItemQuerySet(models.QuerySet):
         return self.filter(*args, **kwargs)
 
 
-class MenuItem(models.Model):
+class MenuItem(MPTTModel):
     class Meta:
         verbose_name = "Пункт меню"
         verbose_name_plural = "Пункты меню"
@@ -86,6 +87,12 @@ class MenuItem(models.Model):
             (HEADER, 'Header'),
             (FOOTER, 'Footer')
         )
+
+    parent = TreeForeignKey('self',
+                            verbose_name='Родитель',
+                            related_name='subitems',
+                            blank=True, null=True)
+
     url = models.CharField("Ссылка", max_length=120)
     title = models.CharField("Название", max_length=255)
     linked_model = models.ForeignKey(ContentType,
@@ -98,7 +105,8 @@ class MenuItem(models.Model):
                                 default=PositionChoices.HEADER,
                                 choices=PositionChoices._CHOICES)
 
-    objects = MenuItemQuerySet.as_manager()
+    objects = TreeManager.from_queryset(MenuItemQuerySet)()
+    objects.use_for_related_fields = True
 
     def __unicode__(self):
         return self.title
