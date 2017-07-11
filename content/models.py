@@ -63,11 +63,29 @@ class Portfolio(models.Model):
         return reverse('content:portfolio_detail', kwargs={"pk": self.id})
 
 
+class MenuItemQuerySet(models.QuerySet):
+
+    def header_items(self, *args, **kwargs):
+        kwargs['position'] = MenuItem.PositionChoices.HEADER
+        return self.filter(*args, **kwargs)
+
+    def footer_items(self, *args, **kwargs):
+        kwargs['position'] = MenuItem.PositionChoices.FOOTER
+        return self.filter(*args, **kwargs)
+
+
 class MenuItem(models.Model):
     class Meta:
         verbose_name = "Пункт меню"
         verbose_name_plural = "Пункты меню"
 
+    class PositionChoices:
+        HEADER = 'header'
+        FOOTER = 'footer'
+        _CHOICES = (
+            (HEADER, 'Header'),
+            (FOOTER, 'Footer')
+        )
     url = models.CharField("Ссылка", max_length=120)
     title = models.CharField("Название", max_length=255)
     linked_model = models.ForeignKey(ContentType,
@@ -75,6 +93,12 @@ class MenuItem(models.Model):
                                      help_text="Определяет индикатор",
                                      blank=True,
                                      null=True)
+    position = models.CharField("Положение",
+                                max_length=10,
+                                default=PositionChoices.HEADER,
+                                choices=PositionChoices._CHOICES)
+
+    objects = MenuItemQuerySet.as_manager()
 
     def __unicode__(self):
         return self.title

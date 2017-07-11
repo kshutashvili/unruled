@@ -17,7 +17,8 @@ class ExtraBlockAdmin(admin.ModelAdmin):
 @admin.register(MenuItem)
 class MenuItemAdmin(admin.ModelAdmin):
 
-    list_display = ('title',)
+    list_display = ('title', 'position')
+    list_filter = ('position', )
 
 
 @admin.register(UnruledNumbers)

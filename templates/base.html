@@ -2,6 +2,7 @@
 {% load get_solo from solo_tags %}
 {% get_solo 'config.SiteConfiguration' as conf %}
 {% load counters %}
+{% count_portfolio as portfolio_indicator %}
 
 <!DOCTYPE html>
 <html lang="ru">
@@ -32,13 +33,13 @@
                           <a href="#">Меню</a>
                           <ul class="shadow">
                               <li>
-                                  {% for item in menu_items %}
+                                  {% for item in menu_items.header_items %}
                                   <a href="{{ item.url }}">{{ item.title }}{% if item.indicator != None %}<span>{{ item.indicator }}</span>{% endif %}</a>
                                   {% endfor %}
                               </li>
                           </ul>
                       </li>
-                      <li class="menu-counter"><a href="#">{% count_portfolio %}</a></li>
+                      <li class="menu-counter"><a href="#">{{ portfolio_indicator }}</a></li>
                       {% block bot_header %}{% endblock %}
                   </ul>
               </div>
@@ -86,17 +87,8 @@
                 <h2 class="footer__nav__title about-company__title"><a href="#!">О КОМПАНИИ</a></h2>
                 <a href="#!" class="footer__nav__link">История</a>
                 <a href="#!" class="footer__nav__link">Клиенты</a>
-                <a href="#!" class="footer__nav__link">Портфолио &nbsp <span>15</span></a>
-                <a href="#!" class="footer__nav__link">Команда</a>
-                <a href="#!" class="footer__nav__link">Контакты</a>
-            </div>
-
-            <div class="news">
-                <h2 class="footer__nav__title news__title"><a href="#!">НОВОСТИ</a></h2>
-                <a href="#!" class="footer__nav__link">Новости &nbsp <span>7</span></a>
-                <a href="#!" class="footer__nav__link">Вакансии &nbsp <span>3</span></a>
-                <a href="#!" class="footer__nav__link">Технологии</a>
-                <a href="#!" class="footer__nav__link">Документы</a>
+                <a href="{% url 'content:portfolio' %}" class="footer__nav__link">Портфолио &nbsp <span>{{ portfolio_indicator }}</span></a>
+                <a href="{% url 'content:contacts' %}" class="footer__nav__link">Контакты</a>
             </div>
 
             <div class="to-clients">
