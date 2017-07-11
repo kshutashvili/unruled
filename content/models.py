@@ -198,6 +198,10 @@ class Order(models.Model):
     attachment = models.FileField("Требования/тех задание",
                                   upload_to="orders",
                                   blank=True)
+
+    portfolio = models.ForeignKey(Portfolio,
+                                  verbose_name="Портфолио",
+                                  blank=True, null=True)
     created_dt = models.DateTimeField("Дата создания",
                                       auto_now_add=True)
 

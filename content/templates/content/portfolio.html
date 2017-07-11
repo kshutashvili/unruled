@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block left_menu %}
+{% endblock %}
 {% block content %}
   <!--project description section start-->
 
@@ -21,6 +23,19 @@
                       <p><b>Подробное описание проекта:</b> {{ portfolio.detailed_description }}
                       </p>
                   </div>
+              </div>
+
+              <div class="gallery-section__gallery-nav gallery-nav">
+                {% if prev_portfolio != None %}
+                <a href="{{ prev_portfolio }}" class="gallery-nav__arrow gallery-nav__arrow--prev">Назад</a>
+                {% endif %}
+
+                {% if next_portfolio != None %}
+                <a href="{{ next_portfolio }}" class="gallery-nav__arrow gallery-nav__arrow--next">Вперед</a>
+                {% endif %}
+
+                <a href="#!" class="gallery-section__btn pop-up-form-open" data-project-id="{{ portfolio.id }}">Заказать проект</a>
+
               </div>
 
           </div>

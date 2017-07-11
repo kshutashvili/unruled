@@ -31,6 +31,22 @@ class PortfolioDetailView(DetailView):
     template_name = 'content/portfolio.html'
     context_object_name = 'portfolio'
 
+    def get_context_data(self, **kwargs):
+        context = super(PortfolioDetailView, self).get_context_data(**kwargs)
+
+        # set previous and next page
+        try:
+            context['prev_portfolio'] = self.object.get_previous_by_release_date().get_absolute_url()
+        except Portfolio.DoesNotExist:
+            context['prev_portfolio'] = None
+
+        try:
+            context['next_portfolio'] = self.object.get_next_by_release_date().get_absolute_url()
+        except Portfolio.DoesNotExist:
+            context['next_portfolio'] = None
+
+        return context
+
 
 class ContactsView(TemplateView):
     template_name = 'content/contacts.html'
