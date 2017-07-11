@@ -5,9 +5,26 @@
   <li class="masonic-eye" id="bot-open"><a href="#"></a></li>
 {% endblock %}
 
-{% block content %}
-  {% include 'bot/bot.html' with bot=conf.bot_question %}
+{% block bot %}
+{% include 'bot/bot.html' with bot=conf.bot_question %}
+{% endblock %}
 
+{% block left_menu %}
+<section class="history-section">
+  <div class="container">
+    <div class="left-menu">
+      <nav>
+          <a href="{% if conf.show_about %}#history{% else %}#!{% endif %}">История</a>
+          <a href="{% if conf.show_clients %}#clients{% else %}#!{% endif %}">Клиенты</a>
+          <a href="{% if conf.show_portfolio %}#portfolio{% else %}{% url 'content:portfolio' %}{% endif %}">Портфолио</a>
+          <a href="{% if conf.show_contacts %}#contacts{% else %}{% url 'content:contacts' %}{% endif %}">Контакты</a>
+      </nav>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block content %}
   <!-- TODO: styling -->
   {% if conf.block_trap_text %}
   <section class="history-section">
@@ -18,42 +35,33 @@
   {% endif %}
 
   <!-- TODO: styling, fixed header offset, anchor linking method -->
+  {% if conf.show_about %}
   <section class="history-section">
     <div class="container">
-      <div class="left-menu">
-        <nav>
-            {% if conf.show_about %}<a href="#history">История</a> {% endif %}
-            {% if conf.show_clients %}<a href="#clients">Клиенты</a> {% endif %}
-            {% if conf.show_portfolio %}<a href="#portfolio">Портфолио</a> {% endif %}
-            {% if conf.show_contacts %}<a href="#contacts">Контакты</a> {% endif %}
-        </nav>
+      <!--history block start-->
+      <div class="tagline">
+          <p><span></span>{{ conf.about_slogan }}</p>
+      </div>
+      <hr width="2px" color="#fff" size='429px'>
+      <div id="history" class="history">
+          <h2>ИСТОРИЯ</h2>
+          {{ conf.about_text|linebreaks }}
       </div>
 
-    {% if conf.show_about %}
-    <!--history block start-->
-    <div id="history" class="tagline">
-        <p><span></span>{{ conf.about_slogan }}</p>
+      <!-- TODO: styling -->
+      <p class="unruled-in-numbers">Unruled в цифрах</p>
+      <div class="statistics">
+          {% for number in unruled_numbers %}
+          <div class="statistics__block">
+              <p>{{ number.number }}</p>
+              <p>{{ number.measure_unit }}</p>
+          </div>
+        {% endfor %}
+      </div>
     </div>
-    <hr width="2px" color="#fff" size='429px'>
-    <div class="history">
-        <h2>ИСТОРИЯ</h2>
-        {{ conf.about_text }}
-    </div>
-
-    <!-- TODO: styling -->
-    <p class="unruled-in-numbers">Unruled в цифрах</p>
-    <div class="statistics">
-        {% for number in unruled_numbers %}
-        <div class="statistics__block">
-            <p>{{ number.number }}</p>
-            <p>{{ number.measure_unit }}</p>
-        </div>
-      {% endfor %}
-    </div>
-    <!--history block end-->
-    {% endif %}
-  </div>
   </section>
+  <!--history block end-->
+  {% endif %}
 
   {% if conf.show_clients %}
   <!-- TODO: styling -->
@@ -123,71 +131,6 @@
   </section>
 
   <!--portfolio end-->
-  {% endif %}
-
-  {% if conf.show_team %}
-  <!--team section start-->
-
-  <section class="team-section">
-      <div class="container">
-          <div class="team-panel">
-              <div class="team-panel__nav">
-                  <a href="#!" class="team-panel__nav__link"></a>
-                  <a href="#!" class="team-panel__nav__link"></a>
-                  <a href="#!" class="team-panel__nav__link"></a>
-                  <a href="#!" class="team-panel__nav__link"></a>
-                  <a href="#!" class="team-panel__nav__link"></a>
-              </div>
-              <div class="team-members-panel">
-                  <div class="team-members-panel__group">
-                      <a href="#!" class="member">Иванов Иван</a>
-                      <a href="#!" class="member">Иванов Иван</a>
-                  </div>
-                  <div class="team-members-panel__group">
-                      <a href="#!" class="member">Иванов Иван</a>
-                      <a href="#!" class="member">Иванов Иван</a>
-                  </div>
-                  <div class="team-members-panel__group">
-                      <a href="#!" class="member">Иванов Иван</a>
-                      <a href="#!" class="member">Иванов Иван</a>
-                  </div>
-              </div>
-          </div>
-
-          <!--member profile start-->
-
-          <div class="member-profile">
-              <div class="member-profile__decs profile-desc">
-                  <p class="profile-desc__title profile-desc__title--model">Модель: </p>
-                  <p class="profile-desc__text profile-desc__text--model">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor Excepteur sint </p>
-                  <p class="profile-desc__title profile-desc__title--mission">Предназначение: </p>
-                  <p class="profile-desc__text profile-desc__text--mission">должность</p>
-                  <p class="profile-desc__title profile-desc__title--description">Описание: </p>
-                  <p class="profile-desc__text profile-desc__text--description">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor Excepteur sint<br> occade
-                      omnis onsectetur, adipisci velit, sed quia non numquam eius modi </p>
-              </div>
-
-              <div class="member-profile__pic"><img src="{% static '/img/member-pic.jpg' %}" alt="member"></div>
-              <div class="member-profile__powers">
-                  <p class="member-profile__power-title">Сила</p>
-                  <div class="member-profile__power">
-                      <p class="member-profile__power__hits">300</p>
-                      <p class="member-profile__power__text">Часов<br> дизайна</p>
-                  </div>
-
-                  <div class="member-profile__socials">
-                      <a href="#!" class="member-profile__socials__link member-profile__socials__link--fb"></a>
-                      <a href="#!" class="member-profile__socials__link member-profile__socials__link--twitter"></a>
-                      <a href="#!" class="member-profile__socials__link member-profile__socials__link--linkedin"></a>
-                  </div>
-              </div>
-          </div>
-
-          <!--member profile end-->
-      </div>
-  </section>
-
-  <!--team section end-->
   {% endif %}
 
   {% if conf.show_contacts %}
@@ -276,48 +219,51 @@
     {% endfor %}
   {% endif %}
 
-  {% if conf.show_why_unruled %}
-      <!--pop-up form start-->
+    <!--pop-up form start-->
 
-    <section class="popup">
-        <div class="popup__form-wrap">
-            <a href="#!" class="popup__close">x</a>
+  <section class="popup">
+      <div class="popup__form-wrap">
+          <a href="#!" class="popup__close">x</a>
 
-            <form action="{% url 'content:create_order' %}" class="popup-form" method="POST">
-                {% csrf_token %}
-                <div class="popup-form__input-wrap">
-                    <p class="popup-form__error error-hide"><span>Незаполненое поле</span></p>
-                    <p><input type="text" class="popup-form__input" name="name" placeholder="Ваше имя"></p>
-                </div>
+          <form action="{% url 'content:create_order' %}" class="popup-form" method="POST">
+              {% csrf_token %}
+              <div class="popup-form__input-wrap">
+                  <p class="popup-form__error error-hide"><span>Незаполненое поле</span></p>
+                  <p><input type="text" class="popup-form__input" name="name" placeholder="Ваше имя"></p>
+              </div>
 
-                <div class="popup-form__input-wrap">
-                    <p class="popup-form__error error-hide"><span>Неверно введены данные</span></p>
-                    <p><input type="text" class="popup-form__input" name="phone_or_email" placeholder="Ваш телефон или e-mail"></p>
-                </div>
+              <div class="popup-form__input-wrap">
+                  <p class="popup-form__error error-hide"><span>Неверно введены данные</span></p>
+                  <p><input type="text" class="popup-form__input" name="phone_or_email" placeholder="Ваш телефон или e-mail"></p>
+              </div>
 
-                <div class="popup-form__input-wrap">
-                    <p class="popup-form__error error-hide"><span>Незаполненое поле</span></p>
-                    <p><textarea type="text" class="popup-form__input popup-form__input--textarea" name="description" placeholder="Описание проекта"></textarea></p>
-                </div>
+              <div class="popup-form__input-wrap">
+                  <p class="popup-form__error error-hide"><span>Незаполненое поле</span></p>
+                  <p><textarea type="text" class="popup-form__input popup-form__input--textarea" name="description" placeholder="Описание проекта"></textarea></p>
+              </div>
 
-                <div class="popup-form__input-wrap">
-                    <p class="popup-form__upload-desc">Прикрепить Бизнес Требования / Техническое задание (макс. 5мб)</p>
-                    <div class="popup-form__upload-wrap">
-                        <label for="uploadfile" class="popup-form__input-upload-label"></label>
-                        <input type="file" class="popup-form__input-upload" name="attachment" id="uploadfile">
-                        <div class="popup-form__upload-file-name"></div>
-                    </div>
-                </div>
+              <div class="popup-form__input-wrap">
+                  <p class="popup-form__upload-desc">Прикрепить Бизнес Требования / Техническое задание (макс. 5мб)</p>
+                  <div class="popup-form__upload-wrap">
+                      <label for="uploadfile" class="popup-form__input-upload-label"></label>
+                      <input type="file" class="popup-form__input-upload" name="attachment" id="uploadfile">
+                      <div class="popup-form__upload-file-name"></div>
+                  </div>
+              </div>
 
-                <div class="popup-form__input-wrap popup-form__input-wrap-submit">
-                    <p class="popup-form__error error-hide"><span>Ошибка формы</span></p>
-                    <p><input type="submit" class="popup-form__input popup-form__input-submit" value="Отправить"></p>
-                </div>
+              <div class="popup-form__input-wrap popup-form__input-wrap-submit">
+                  <p class="popup-form__error error-hide"><span>Ошибка формы</span></p>
+                  <p><input type="submit" class="popup-form__input popup-form__input-submit" value="Отправить"></p>
+              </div>
 
-            </form>
-        </div>
-    </section>
+          </form>
+      </div>
+  </section>
 
   <!--pop-up form end-->
-  {% endif %}
+{% endblock %}
+
+{% block scripts %}
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlgAx5uM4UtPMSzDaVToeNGqe9uNZqRP4"></script>
+  {{ block.super }}
 {% endblock %}

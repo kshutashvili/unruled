@@ -50,7 +50,6 @@ class SiteConfiguration(SingletonModel):
     show_clients = models.BooleanField('Блок "Клиенты"', default=True)
     show_why_unruled = models.BooleanField('Блок "Почему анрулд"', default=True)
     show_portfolio = models.BooleanField('Блок "Портфолио"', default=True)
-    show_team = models.BooleanField('Блок "Команда"', default=True)
     show_contacts = models.BooleanField('Блок "Контакты"', default=True)
 
     def __unicode__(self):

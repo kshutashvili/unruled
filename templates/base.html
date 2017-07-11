@@ -49,6 +49,22 @@
 <!--header end-->
 
 <content>
+{% block bot %}
+{% endblock %}
+{% block left_menu %}
+  <section class="history-section">
+    <div class="container">
+      <div class="left-menu">
+        <nav>
+            <a href="#!">История</a>
+            <a href="#!">Клиенты</a>
+            <a href="{% url 'content:portfolio' %}">Портфолио</a>
+            <a href="{% url 'content:contacts' %}">Контакты</a>
+        </nav>
+      </div>
+    </div>
+  </section>
+{% endblock %}
 {% block content %}
 {% endblock %}
 </content>
@@ -96,7 +112,6 @@
 
 {% block scripts %}
   <!--sripts-->
-  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlgAx5uM4UtPMSzDaVToeNGqe9uNZqRP4"></script>
   <script src="{% static 'js/app.js' %}"></script>
 {% endblock %}
 </body>
