@@ -63,24 +63,6 @@ class Portfolio(models.Model):
         return reverse('content:portfolio_detail', kwargs={"pk": self.id})
 
 
-class NewsManager(models.Manager):
-    def indicator(self):
-        return self.count()
-
-
-class News(models.Model):
-
-    title = models.CharField("Заголовок", max_length=255)
-    short_content = models.TextField("Краткое содержание")
-    full_content = models.TextField("Полное содержание")
-    created_dt = models.DateTimeField("Дата создания", auto_now_add=True)
-
-    objects = NewsManager()
-
-    def __unicode__(self):
-        return self.title
-
-
 class MenuItem(models.Model):
     class Meta:
         verbose_name = "Пункт меню"
