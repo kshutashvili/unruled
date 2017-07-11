@@ -5,6 +5,7 @@ from django.urls import reverse
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from ckeditor.fields import RichTextField
+import datetime
 
 
 class ExtraBlockQuerySet(models.QuerySet):
@@ -37,7 +38,8 @@ class PortfolioManager(models.Manager):
         return self.all()[:3]
 
     def indicator(self):
-        return self.count()
+        period_start = datetime.datetime.today()-datetime.timedelta(days=30)
+        return self.filter(release_date__gte=period_start).count()
 
 
 class Portfolio(models.Model):
