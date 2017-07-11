@@ -109,7 +109,7 @@ class MenuItem(MPTTModel):
     objects.use_for_related_fields = True
 
     def __unicode__(self):
-        return self.title
+        return '{} - {}'.format(self.position.capitalize(), self.title)
 
     @property
     def indicator(self):
