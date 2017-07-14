@@ -47,6 +47,8 @@ class PortfolioDetailView(DetailView):
         except Portfolio.DoesNotExist:
             context['next_portfolio'] = None
 
+        context['left_menu_hide'] = True
+
         return context
 
 

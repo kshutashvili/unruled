@@ -51,7 +51,9 @@
 </header>
 <!--header end-->
 
+{% if not left_menu_hide %}
 <div class="wrap-for-left-menu">
+
   <div class="left-menu" id="smoothscroll">
     <nav>
         {% block left_menu %}
@@ -62,7 +64,7 @@
         {% endblock %}
     </nav>
   </div>
-
+{% endif %}
   {% block content %}
   {% endblock %}
 
@@ -92,7 +94,7 @@
           </div>
       </div>
   </footer> <!--footer end-->
-</div> <!-- wrap-for-left-menu end -->
+{% if left_menu_hide %}</div> <!-- wrap-for-left-menu end -->{% endif %}
 
 {% block scripts %}
   <script src="{% static 'js/app.js' %}"></script>
