@@ -5,13 +5,13 @@
 {% count_portfolio as portfolio_indicator %}
 
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 
 {% block head %}
 <head>
 
   <title>{% block title %}{{ conf.brand_name }}{% endblock %}</title>
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
@@ -46,61 +46,55 @@
           </div>
       </div>
   </div>
+  {% block bot_body %}{% endblock %}
+  {% block trap_block %}{% endblock %}
 </header>
 <!--header end-->
 
-<content>
-{% block bot %}
-{% endblock %}
-{% block left_menu %}
-  <section class="history-section">
-    <div class="container">
-      <div class="left-menu">
-        <nav>
-            <a href="#!">История</a>
-            <a href="#!">Клиенты</a>
-            <a href="{% url 'content:portfolio' %}">Портфолио</a>
-            <a href="{% url 'content:contacts' %}">Контакты</a>
-        </nav>
+<div class="wrap-for-left-menu">
+  <div class="left-menu" id="smoothscroll">
+    <nav>
+        {% block left_menu %}
+        <a href="#!">История</a>
+        <a href="#!">Клиенты</a>
+        <a href="{% url 'content:portfolio' %}">Портфолио</a>
+        <a href="{% url 'content:contacts' %}">Контакты</a>
+        {% endblock %}
+    </nav>
+  </div>
+
+  {% block content %}
+  {% endblock %}
+
+  <!--footer start-->
+
+  <footer class="footer">
+      <div class="container">
+          <div class="footer__socials">
+              <div class="footer__logo"></div>
+              <a href="#!" class="social social__facebook"></a>
+              <a href="#!" class="social social__twitter"></a>
+              <a href="#!" class="social social__linkedin"></a>
+              <a href="#!" class="social social__behance"></a>
+          </div>
+          <div class="footer__nav">
+            <!-- TODO: generic styling -->
+            {% for item in menu_items.footer_items %}
+              <div class="about-company">
+                <h2 class="footer__nav__title about-company__title"><a href="{{ item.url }}">{{ item.title }}</a></h2>
+                {% for child in item.get_children %}
+                <a href="{{ child.url }}" class="footer__nav__link">{{ child.title }} {% if child.indicator != None %}&nbsp<span>{{ child.indicator }}</span>{% endif %}</a>
+
+                {% endfor %}
+              </div>
+            {% endfor %}
+
+          </div>
       </div>
-    </div>
-  </section>
-{% endblock %}
-{% block content %}
-{% endblock %}
-</content>
-
-<!--footer start-->
-
-<footer class="footer">
-    <div class="container">
-        <div class="footer__socials">
-            <div class="footer__logo"></div>
-            <a href="#!" class="social social__facebook"></a>
-            <a href="#!" class="social social__twitter"></a>
-            <a href="#!" class="social social__linkedin"></a>
-            <a href="#!" class="social social__behance"></a>
-        </div>
-        <div class="footer__nav">
-          <!-- TODO: generic styling -->
-          {% for item in menu_items.footer_items %}
-            <div class="about-company">
-              <h2 class="footer__nav__title"><a href="{{ item.url }}">{{ item.title }}</a></h2>
-              {% for child in item.get_children %}
-              <a href="{{ child.url }}" class="footer__nav__link">{{ child.title }} {% if child.indicator != None %}<span>{{ child.indicator }}</span>{% endif %}</a>
-
-              {% endfor %}
-            </div>
-          {% endfor %}
-
-        </div>
-    </div>
-</footer>
-
-<!--footer end-->
+  </footer> <!--footer end-->
+</div> <!-- wrap-for-left-menu end -->
 
 {% block scripts %}
-  <!--sripts-->
   <script src="{% static 'js/app.js' %}"></script>
 {% endblock %}
 </body>

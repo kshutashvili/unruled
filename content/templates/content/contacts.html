@@ -2,80 +2,84 @@
 <!-- TODO: styling, design -->
 {% block content %}
   <!--contacts start-->
-  <section id="contacts" class="contacts-section">
+  <section class="contacts-section" id="contact">
 
-    <!--google map start-->
-    <section class="google-map">
-        <div class="map" id="google-map" data-address="{{ conf.google_maps_address }}"></div>
-    </section>
-    <!--google map end-->
+      <!--google map start-->
+      <section class="google-map">
+          <div class="map" id="google-map" data-address="{{ conf.google_maps_address }}"></div>
+      </section>
+      <!--google map end-->
 
-    <!--contacts form start-->
+      <!--contacts form start-->
 
-    <div class="form-container">
-        <div class="container">
-            <div class="form-wrap">
-                <form action="{% url 'content:contacts' %}" class="contact-us-form" method="POST">
-                    {% csrf_token %}
-                    <!--input name start-->
+      <div class="form-container">
+          <div class="container">
+              <div class="form-wrap">
+                  <form class="contact-us-form" id="contact-us-form">
 
-                    <div class="contact-us-form__input-container">
-                        <div class="contact-us-form__input-wrap">
-                          {% if form.name.errors %}
-                          <p class="contact-us-form__input-wrap__vldtn-wrap"><span class="">Незаполненое поле</span></p>
-                          {% endif %}
-                          <p><input class="contact-us-form__input contact-us-form__input-name" type="text" name="name"
-                                  value="{{ form.name.value }}" placeholder="Имя"></p>
-                        </div>
-                    </div>
+                      <!--input name start-->
 
-                    <!--input name end-->
+                      <div class="contact-us-form__input-container">
+                          <p class="input-wrapper">
+                              <input class="contact-us-form__input contact-us-form__input-name" type="text" name="name" value="" placeholder="Имя" id="contact-us-name">
+                          </p>
 
-                    <!--input email start-->
+                      </div>
 
-                    <div class="contact-us-form__input-container">
-                        <div class="contact-us-form__input-wrap">
-                          {% if form.email.errors %}
-                          <p class="contact-us-form__input-wrap__vldtn-wrap"><span class="">Неправильно введен e-mail</span></p>
-                          {% endif %}
-                          <p><input class="contact-us-form__input contact-us-form__input-email" type="email" name="email"
-                                  value="{{ form.email.value }}" placeholder="E-mail"></p>
-                        </div>
-                    </div>
+                      <!--input name end-->
 
-                    <!--input email end-->
+                      <!--input email start-->
 
-                    <!--message textarea start-->
+                      <div class="contact-us-form__input-container">
+                          <p class="input-wrapper">
+                              <input class="contact-us-form__input contact-us-form__input-email" type="email" name="email" value="" placeholder="E-mail"
+                                  id="contact-us-email">
+                          </p>
+                      </div>
 
-                    <div class="contact-us-form__input-container">
-                        <div class="contact-us-form__input-wrap">
-                          {% if form.text.errors %}
-                          <p class="contact-us-form__input-wrap__vldtn-wrap"><span class="">Вы не ввели текст сообщения</span></p>
-                          {% endif %}
-                          <p><textarea class="contact-us-form__input contact-us-form__input-message" type="text" name="text"
-                                  placeholder="Ваше сообщение">{{ form.text.value }}</textarea></p>
-                        </div>
-                    </div>
+                      <!--input email end-->
 
-                    <!--message textarea end-->
+                      <!--message textarea start-->
 
-                    <!--form submit btn start-->
+                      <div class="contact-us-form__input-container">
+                          <p class="input-wrapper">
+                              <textarea class="contact-us-form__input contact-us-form__input-message" name="text" value="" id="contact-us-message"></textarea>
+                          </p>
 
-                    <div class="contact-us-form__input-container">
-                        <div class="contact-us-form__input-wrap contact-us-form__input-wrap--submit">
-                            <p class="contact-us-form__input-wrap__vldtn-wrap error-hide"><span class="">Ошибка формы</span></p>
-                            <p><input class="contact-us-form__input contact-us-form__input-submit" type="submit"
-                                    value="Отправить"></p>
-                        </div>
-                    </div>
+                      </div>
 
-                    <!--form submit btn end-->
-                </form>
-            </div>
-        </div>
-    </div>
+                      <!--message textarea end-->
 
-    <!--contacts form end-->
+                      <!--form submit btn start-->
+
+                      <div class="contact-us-form__input-container">
+                          <p class="input-wrapper">
+                              <input class="contact-us-form__input contact-us-form__input-submit" type="submit" name="submit" value="Отправить" id="contact-us-submit">
+                          </p>
+                      </div>
+                      <!--form submit btn end-->
+                  </form>
+              </div>
+              <div class="contacts-info">
+                  <div class="contact-wrap">
+                      <p><b>Контактный телефон: </b></p>
+                      <p>{{ conf.phone }}</p>
+                  </div>
+                  <div class="contact-wrap">
+                      <p><b>E-mail: </b></p>
+                      <p><a href="mailto:{{ conf.email }}">{{ conf.email }}</a></p>
+                  </div>
+                  <div class="contact-wrap">
+                      <p><b>Адрес: </b></p>
+                      <p>{{ conf.address }}</p>
+                  </div>
+              </div>
+          </div>
+
+
+      </div>
+
+      <!--contacts form end-->
   </section>
   <!--contacts end-->
 {% endblock %}

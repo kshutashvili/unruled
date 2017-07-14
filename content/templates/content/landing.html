@@ -5,50 +5,42 @@
   <li class="masonic-eye" id="bot-open"><a href="#"></a></li>
 {% endblock %}
 
-{% block bot %}
-{% include 'bot/bot.html' with bot=conf.bot_question %}
+{% block bot_body %}
+{% include 'bot/bot.html' %}
 {% endblock %}
 
-{% block left_menu %}
-<section class="history-section">
-  <div class="container">
-    <div class="left-menu">
-      <nav>
-          <a href="{% if conf.show_about %}#history{% else %}#!{% endif %}">История</a>
-          <a href="{% if conf.show_clients %}#clients{% else %}#!{% endif %}">Клиенты</a>
-          <a href="{% if conf.show_portfolio %}#portfolio{% else %}{% url 'content:portfolio' %}{% endif %}">Портфолио</a>
-          <a href="{% if conf.show_contacts %}#contacts{% else %}{% url 'content:contacts' %}{% endif %}">Контакты</a>
-      </nav>
-    </div>
+{% if conf.block_trap_text %}
+{% block trap_block %}
+  <div class="trap-block">
+      <div class="container">
+        {{ conf.block_trap_text|linebreaks }}
+      </div>
   </div>
-</section>
+{% endblock %}
+{% endif %}
+
+{% block left_menu %}
+      <a href="{% if conf.show_about %}#history{% else %}#!{% endif %}">История</a>
+      <a href="{% if conf.show_clients %}#clients{% else %}#!{% endif %}">Клиенты</a>
+      <a href="{% if conf.show_portfolio %}#portfolio{% else %}{% url 'content:portfolio' %}{% endif %}">Портфолио</a>
+      <a href="{% if conf.show_contacts %}#contact{% else %}{% url 'content:contacts' %}{% endif %}">Контакты</a>
 {% endblock %}
 
 {% block content %}
-  <!-- TODO: styling -->
-  {% if conf.block_trap_text %}
-  <section class="history-section">
-    <div class="container">
-      <p>{{ conf.block_trap_text }}</p>
-    </div>
-  </section>
-  {% endif %}
 
-  <!-- TODO: styling, fixed header offset, anchor linking method -->
   {% if conf.show_about %}
-  <section class="history-section">
+  <section class="history-section" id="history">
     <div class="container">
       <!--history block start-->
       <div class="tagline">
           <p><span></span>{{ conf.about_slogan }}</p>
       </div>
       <hr width="2px" color="#fff" size='429px'>
-      <div id="history" class="history">
+      <div class="history">
           <h2>ИСТОРИЯ</h2>
           {{ conf.about_text|linebreaks }}
       </div>
 
-      <!-- TODO: styling -->
       <p class="unruled-in-numbers">Unruled в цифрах</p>
       <div class="statistics">
           {% for number in unruled_numbers %}
@@ -64,16 +56,15 @@
   {% endif %}
 
   {% if conf.show_clients %}
-  <!-- TODO: styling -->
   <!--clients start-->
-  <section id="clients" class="clients-section">
+  <section class="clients-section" id="clients">
       <div class="container">
           <h2 class="clients-section__title">НАШИ КЛИЕНТЫ</h2>
           <div class="clients-wrap">
               {% for client in clients %}
-                <img src="{{ client.logo.url }}">
+                <a href=#! class="clients-section__client client shadow" style="background-image:url('{{ client.logo.url }}');"></a>
               {% endfor %}
-              <a href="#" class="more-clients-btn">Смотреть еще</a>
+              <a href="#!" class="more-clients-btn">Смотреть еще</a>
           </div>
       </div>
   </section>
@@ -83,14 +74,13 @@
 
   {% if conf.show_why_unruled %}
   <!--why unruled start-->
-  <!-- TODO: styling -->
   <section class="unruled">
       <div class="container">
           <h2 class="unruled__title">ПОЧЕМУ UNRULED</h2>
           <div class="advantages">
             {% for reason in why_unruled %}
               <div class="advantage">
-                  <p><img src="{{ reason.icon.url }}"></p>
+                  <p class="advantage__icon" style="background-image: url('{{ reason.icon.url }}');"></p>
                   <p class="advantage__text">{{ reason.text }}</p>
               </div>
             {% endfor %}
@@ -105,8 +95,7 @@
 
   {% if conf.show_portfolio %}
   <!--portfolio start-->
-  <!-- TODO: styling -->
-  <section id="portfolio" class="portfolio-section">
+  <section class="portfolio-section" id="portfolio">
       <div class="container">
           <h2 class="portfolio-section__title">ПОРТФОЛИО</h2>
 
@@ -136,80 +125,84 @@
 
   {% if conf.show_contacts %}
   <!--contacts start-->
-  <section id="contacts" class="contacts-section">
+  <section class="contacts-section" id="contact">
 
-    <!--google map start-->
-    <section class="google-map">
-        <div class="map" id="google-map" data-address="{{ conf.google_maps_address }}"></div>
-    </section>
-    <!--google map end-->
+      <!--google map start-->
+      <section class="google-map">
+          <div class="map" id="google-map" data-address="{{ conf.google_maps_address }}"></div>
+      </section>
+      <!--google map end-->
 
-    <!--contacts form start-->
+      <!--contacts form start-->
 
-    <div class="form-container">
-        <div class="container">
-            <div class="form-wrap">
-                <form action="{% url 'content:contacts' %}" class="contact-us-form" method="POST">
-                    {% csrf_token %}
-                    <!--input name start-->
+      <div class="form-container">
+          <div class="container">
+              <div class="form-wrap">
+                  <form class="contact-us-form" id="contact-us-form">
 
-                    <div class="contact-us-form__input-container">
-                        <div class="contact-us-form__input-wrap">
-                          {% if form.name.errors %}
-                          <p class="contact-us-form__input-wrap__vldtn-wrap"><span class="">Незаполненое поле</span></p>
-                          {% endif %}
-                          <p><input class="contact-us-form__input contact-us-form__input-name" type="text" name="name"
-                                  value="{{ form.name.value }}" placeholder="Имя"></p>
-                        </div>
-                    </div>
+                      <!--input name start-->
 
-                    <!--input name end-->
+                      <div class="contact-us-form__input-container">
+                          <p class="input-wrapper">
+                              <input class="contact-us-form__input contact-us-form__input-name" type="text" name="name" value="" placeholder="Имя" id="contact-us-name">
+                          </p>
 
-                    <!--input email start-->
+                      </div>
 
-                    <div class="contact-us-form__input-container">
-                        <div class="contact-us-form__input-wrap">
-                          {% if form.email.errors %}
-                          <p class="contact-us-form__input-wrap__vldtn-wrap"><span class="">Неправильно введен e-mail</span></p>
-                          {% endif %}
-                          <p><input class="contact-us-form__input contact-us-form__input-email" type="email" name="email"
-                                  value="{{ form.email.value }}" placeholder="E-mail"></p>
-                        </div>
-                    </div>
+                      <!--input name end-->
 
-                    <!--input email end-->
+                      <!--input email start-->
 
-                    <!--message textarea start-->
+                      <div class="contact-us-form__input-container">
+                          <p class="input-wrapper">
+                              <input class="contact-us-form__input contact-us-form__input-email" type="email" name="email" value="" placeholder="E-mail"
+                                  id="contact-us-email">
+                          </p>
+                      </div>
 
-                    <div class="contact-us-form__input-container">
-                        <div class="contact-us-form__input-wrap">
-                          {% if form.text.errors %}
-                          <p class="contact-us-form__input-wrap__vldtn-wrap"><span class="">Вы не ввели текст сообщения</span></p>
-                          {% endif %}
-                          <p><textarea class="contact-us-form__input contact-us-form__input-message" type="text" name="text"
-                                  placeholder="Ваше сообщение">{{ form.text.value }}</textarea></p>
-                        </div>
-                    </div>
+                      <!--input email end-->
 
-                    <!--message textarea end-->
+                      <!--message textarea start-->
 
-                    <!--form submit btn start-->
+                      <div class="contact-us-form__input-container">
+                          <p class="input-wrapper">
+                              <textarea class="contact-us-form__input contact-us-form__input-message" name="text" value="" id="contact-us-message"></textarea>
+                          </p>
 
-                    <div class="contact-us-form__input-container">
-                        <div class="contact-us-form__input-wrap contact-us-form__input-wrap--submit">
-                            <p class="contact-us-form__input-wrap__vldtn-wrap error-hide"><span class="">Ошибка формы</span></p>
-                            <p><input class="contact-us-form__input contact-us-form__input-submit" type="submit"
-                                    value="Отправить"></p>
-                        </div>
-                    </div>
+                      </div>
 
-                    <!--form submit btn end-->
-                </form>
-            </div>
-        </div>
-    </div>
+                      <!--message textarea end-->
 
-    <!--contacts form end-->
+                      <!--form submit btn start-->
+
+                      <div class="contact-us-form__input-container">
+                          <p class="input-wrapper">
+                              <input class="contact-us-form__input contact-us-form__input-submit" type="submit" name="submit" value="Отправить" id="contact-us-submit">
+                          </p>
+                      </div>
+                      <!--form submit btn end-->
+                  </form>
+              </div>
+              <div class="contacts-info">
+                  <div class="contact-wrap">
+                      <p><b>Контактный телефон: </b></p>
+                      <p>{{ conf.phone }}</p>
+                  </div>
+                  <div class="contact-wrap">
+                      <p><b>E-mail: </b></p>
+                      <p><a href="mailto:{{ conf.email }}">{{ conf.email }}</a></p>
+                  </div>
+                  <div class="contact-wrap">
+                      <p><b>Адрес: </b></p>
+                      <p>{{ conf.address }}</p>
+                  </div>
+              </div>
+          </div>
+
+
+      </div>
+
+      <!--contacts form end-->
   </section>
   <!--contacts end-->
   {% endif %}
@@ -220,41 +213,38 @@
     {% endfor %}
   {% endif %}
 
-    <!--pop-up form start-->
 
   <section class="popup">
       <div class="popup__form-wrap">
           <a href="#!" class="popup__close">x</a>
 
-          <form action="{% url 'content:create_order' %}" class="popup-form" method="POST">
-              {% csrf_token %}
+          <form class="popup-form" id="project-form" enctype="multipart/form-data">
               <div class="popup-form__input-wrap">
-                  <p class="popup-form__error error-hide"><span>Незаполненое поле</span></p>
-                  <p><input type="text" class="popup-form__input" name="name" placeholder="Ваше имя"></p>
+
+                  <p class="input-wrap"><input type="text" class="popup-form__input" name="name" placeholder="Ваше имя"></p>
               </div>
 
               <div class="popup-form__input-wrap">
-                  <p class="popup-form__error error-hide"><span>Неверно введены данные</span></p>
-                  <p><input type="text" class="popup-form__input" name="phone_or_email" placeholder="Ваш телефон или e-mail"></p>
+
+                  <p class="input-wrap"><input type="text" class="popup-form__input" name="phone_or_email" placeholder="Ваш телефон или e-mail"></p>
               </div>
 
               <div class="popup-form__input-wrap">
-                  <p class="popup-form__error error-hide"><span>Незаполненое поле</span></p>
-                  <p><textarea type="text" class="popup-form__input popup-form__input--textarea" name="description" placeholder="Описание проекта"></textarea></p>
+
+                  <p class="input-wrap"><textarea type="text" class="popup-form__input popup-form__input--textarea" name="description" placeholder="Описание проекта"></textarea></p>
               </div>
 
               <div class="popup-form__input-wrap">
-                  <p class="popup-form__upload-desc">Прикрепить Бизнес Требования / Техническое задание (макс. 5мб)</p>
+                  <p class="popup-form__upload-desc">Прикрепить Бизнес Требования / Техническое задание</p>
                   <div class="popup-form__upload-wrap">
                       <label for="uploadfile" class="popup-form__input-upload-label"></label>
                       <input type="file" class="popup-form__input-upload" name="attachment" id="uploadfile">
-                      <div class="popup-form__upload-file-name"></div>
+                      <div class="popup-form__upload-file-name" id="input-file-name"></div>
                   </div>
               </div>
 
               <div class="popup-form__input-wrap popup-form__input-wrap-submit">
-                  <p class="popup-form__error error-hide"><span>Ошибка формы</span></p>
-                  <p><input type="submit" class="popup-form__input popup-form__input-submit" value="Отправить"></p>
+                  <p><input class="popup-form__input popup-form__input-submit" type="submit" id="submit" name="submit" value="Отправить"></p>
               </div>
 
           </form>
@@ -262,6 +252,16 @@
   </section>
 
   <!--pop-up form end-->
+
+
+  <!-- form response popup start -->
+
+  <!-- <div class="form-response-popup">
+
+  </div> -->
+
+  <!-- form response popup end -->
+
 {% endblock %}
 
 {% block scripts %}
