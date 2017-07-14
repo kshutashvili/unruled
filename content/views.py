@@ -5,6 +5,8 @@ from django.views.generic import TemplateView, ListView, DetailView
 from .models import (ExtraBlock, UnruledNumbers, Client, WhyUnruled,
                      Portfolio)
 from .forms import MessageForm, OrderForm
+from django.http import JsonResponse, HttpResponseBadRequest
+import json
 
 
 class LandingView(TemplateView):
@@ -52,11 +54,22 @@ class ContactsView(TemplateView):
     template_name = 'content/contacts.html'
 
     def post(self, request):
-        form = MessageForm(request.POST)
+        if not request.is_ajax():
+            return HttpResponseBadRequest()
+
+        # parse data
+        try:
+            data = json.loads(request.body)
+        except ValueError:
+            return JsonResponse({'status': 'error',
+                                 'message': 'Invalid request body'})
+
+        form = MessageForm(data)
         if form.is_valid():
             form.save()
-            return render(request, self.template_name)
-        return render(request, self.template_name, {'form': form})
+            return JsonResponse({'status': 'ok'})
+
+        return JsonResponse({'status': 'error'})
 
 
 @require_POST
