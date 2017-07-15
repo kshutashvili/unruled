@@ -7,3 +7,6 @@ from django.apps import AppConfig
 class BotConfig(AppConfig):
     name = 'bot'
     verbose_name = 'Конфигурация бота'
+
+    def ready(self):
+        import bot.signals
