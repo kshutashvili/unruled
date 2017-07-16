@@ -3,6 +3,7 @@
 {% get_solo 'config.SiteConfiguration' as conf %}
 {% load counters %}
 {% count_portfolio as portfolio_indicator %}
+{% load menu_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,7 +35,7 @@
                           <ul class="shadow">
                               <li>
                                   {% for item in menu_items.header_items %}
-                                  <a href="{{ item.url }}">{{ item.title }}{% if item.indicator != None %}<span>{{ item.indicator }}</span>{% endif %}</a>
+                                  <a href="{{ item.url }}">{% menu_item_title item %}</a>
                                   {% endfor %}
                               </li>
                           </ul>
@@ -85,7 +86,7 @@
               <div class="about-company">
                 <h2 class="footer__nav__title about-company__title"><a href="{{ item.url }}">{{ item.title }}</a></h2>
                 {% for child in item.get_children %}
-                <a href="{{ child.url }}" class="footer__nav__link">{{ child.title }} {% if child.indicator != None %}&nbsp<span>{{ child.indicator }}</span>{% endif %}</a>
+                <a href="{{ child.url }}" class="footer__nav__link">{% menu_item_title child %}</a>
 
                 {% endfor %}
               </div>
