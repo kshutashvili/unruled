@@ -75,10 +75,18 @@
       <div class="container">
           <div class="footer__socials">
               <div class="footer__logo"></div>
-              <a href="#!" class="social social__facebook"></a>
-              <a href="#!" class="social social__twitter"></a>
-              <a href="#!" class="social social__linkedin"></a>
-              <a href="#!" class="social social__behance"></a>
+              {% if conf.social_facebook %}
+              <a href="{{ conf.social_facebook }}" class="social social__facebook"></a>
+              {% endif %}
+              {% if conf.social_twitter %}
+              <a href="{{ conf.social_twitter }}" class="social social__twitter"></a>
+              {% endif %}
+              {% if conf.social_linkedin %}
+              <a href="{{ conf.social_linkedin }}" class="social social__linkedin"></a>
+              {% endif %}
+              {% if conf.social_behance %}
+              <a href="{{ conf.social_behance }}" class="social social__behance"></a>
+              {% endif %}
           </div>
           <div class="footer__nav">
             <!-- TODO: generic styling -->

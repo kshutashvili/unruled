@@ -52,5 +52,23 @@ class SiteConfiguration(SingletonModel):
     show_portfolio = models.BooleanField('Блок "Портфолио"', default=True)
     show_contacts = models.BooleanField('Блок "Контакты"', default=True)
 
+    # social links
+    social_facebook = models.CharField('Ссылка Facebook',
+                                       max_length=120,
+                                       default="",
+                                       blank=True)
+    social_twitter = models.CharField('Ссылка Twitter',
+                                      max_length=120,
+                                      default="",
+                                      blank=True)
+    social_linkedin = models.CharField('Ссылка LinkedIn',
+                                       max_length=120,
+                                       default="",
+                                       blank=True)
+    social_behance = models.CharField('Ссылка Behance',
+                                      max_length=120,
+                                      default="",
+                                      blank=True)
+
     def __unicode__(self):
         return "Конфигурация сайта"
