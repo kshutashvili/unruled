@@ -1,5 +1,4 @@
 {% extends "base.html" %}
-<!-- TODO: styling, design -->
 {% block content %}
   <!--contacts start-->
   <section class="contacts-section" id="contact">
@@ -37,6 +36,7 @@
       <!--contacts form end-->
   </section>
   <!--contacts end-->
+  {% include 'content/partials/popup_response_form.html' %}
 {% endblock %}
 
 {% block scripts %}

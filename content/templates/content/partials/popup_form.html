@@ -2,8 +2,9 @@
       <div class="popup__form-wrap">
           <a href="#!" class="popup__close">x</a>
 
-          <form class="popup-form" id="project-form" enctype="multipart/form-data">
+          <form class="popup-form" id="project-form" enctype="multipart/form-data" name="orderform">
               {% csrf_token %}
+              <input type="hidden" value="" id="hidden-project-id" name="portfolio">
               <div class="popup-form__input-wrap">
 
                   <p class="input-wrap"><input type="text" class="popup-form__input" name="name" placeholder="Ваше имя"></p>
@@ -37,12 +38,3 @@
   </section>
 
   <!--pop-up form end-->
-
-
-  <!-- form response popup start -->
-
-  <!-- <div class="form-response-popup">
-
-  </div> -->
-
-  <!-- form response popup end -->

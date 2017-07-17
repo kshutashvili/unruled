@@ -123,6 +123,20 @@
   <!--portfolio end-->
   {% endif %}
 
+  {% if extra_blocks %}
+    <!-- TODO: extra block section -->
+    <!-- extra block start -->
+    {% for extra_block in extra_blocks %}
+
+    <div class="extra-block">
+        <div class="container">
+          {{ extra_block.html|safe }}
+        </div>
+    </div>
+    {% endfor %}
+    <!-- extra block end -->
+  {% endif %}
+
   {% if conf.show_contacts %}
   <!--contacts start-->
   <section class="contacts-section" id="contact">
@@ -162,13 +176,8 @@
   <!--contacts end-->
   {% endif %}
 
-  {% if extra_blocks %}
-    {% for extra_block in extra_blocks %}
-      {{ extra_block.html|safe }}
-    {% endfor %}
-  {% endif %}
-
   {% include 'content/partials/popup_form.html' %}
+  {% include 'content/partials/popup_response_form.html' %}
 
 {% endblock %}
 

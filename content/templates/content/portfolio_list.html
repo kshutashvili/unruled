@@ -19,7 +19,6 @@
               </div>
             {% endfor %}
 
-            <!-- TODO: styling inactive links -->
             {% if is_paginated %}
               <div class="portfolio__navigation">
                 <a href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% endif %}" class="portfolio__navigation__arrows portfolio__navigation__arrows--prev {% if not page_obj.has_previous %}not-active{% endif %}"></a>
@@ -38,4 +37,5 @@
 
   <!--portfolio end-->
   {% include 'content/partials/popup_form.html' %}
+  {% include 'content/partials/popup_response_form.html' %}
 {% endblock %}
