@@ -4,8 +4,6 @@ from django.conf.urls import url
 from content.views import (LandingView, PortfolioListView, PortfolioDetailView,
                            ContactsView, order_create_view)
 
-from django.views.decorators.csrf import ensure_csrf_cookie
-
 
 urlpatterns = [
     url(r'^$', LandingView.as_view(), name='landing'),

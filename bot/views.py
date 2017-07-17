@@ -33,8 +33,7 @@ def get_question(request):
                 'type': x.answer_type
             } for x in obj.answers.order_by('answer_type')]
     }
-    return JsonResponse(data,
-                        json_dumps_params={'ensure_ascii': False})
+    return JsonResponse(data)
 
 
 @require_POST
@@ -49,8 +48,7 @@ def set_answer(request):
         data = json.loads(request.body)
     except ValueError:
         return JsonResponse({'status': 'error',
-                             'message': 'Invalid request body'},
-                            json_dumps_params={'ensure_ascii': False})
+                             'message': 'Invalid request body'})
 
     create_data = {
         'answer_id': data.get('answerId'),
@@ -63,8 +61,8 @@ def set_answer(request):
         # validate UserAnswer object
         obj.full_clean()
     except ValidationError:
-        return JsonResponse({'status': 'error'},
-                            json_dumps_params={'ensure_ascii': False})
+        return JsonResponse({'status': 'error'})
     obj.save()
-    return JsonResponse({'status': 'ok'},
-                        json_dumps_params={'ensure_ascii': False})
+    return JsonResponse({'status': 'ok',
+                         'message': u'Ваше сообщение отправлено, '
+                                    u'с Вами свяжется наш сотрудник'})

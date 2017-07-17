@@ -68,7 +68,9 @@ class ContactsView(TemplateView):
         form = MessageForm(data)
         if form.is_valid():
             form.save()
-            return JsonResponse({'status': 'ok'})
+            return JsonResponse({'status': 'ok',
+                                 'message': u'Ваше сообщение отправлено, '
+                                            u'с Вами свяжется наш сотрудник'})
 
         return JsonResponse({'status': 'error'})
 
@@ -80,7 +82,9 @@ def order_create_view(request):
     if form.is_valid():
         form.save()
 
-        return JsonResponse({'status': 'ok'})
+        return JsonResponse({'status': 'ok',
+                             'message': u'Ваше сообщение отправлено, '
+                                        u'с Вами свяжется наш сотрудник'})
 
     return JsonResponse({'status': 'error'})
 
