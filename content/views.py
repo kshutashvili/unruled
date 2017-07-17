@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from django.views.decorators.http import require_POST
-from django.shortcuts import render, redirect
 from django.views.generic import TemplateView, ListView, DetailView
 from .models import (ExtraBlock, UnruledNumbers, Client, WhyUnruled,
                      Portfolio)
@@ -76,9 +75,12 @@ class ContactsView(TemplateView):
 
 @require_POST
 def order_create_view(request):
-    form = OrderForm(request.POST)
+    form = OrderForm(request.POST, request.FILES)
 
     if form.is_valid():
         form.save()
 
-    return redirect('content:landing')
+        return JsonResponse({'status': 'ok'})
+
+    return JsonResponse({'status': 'error'})
+

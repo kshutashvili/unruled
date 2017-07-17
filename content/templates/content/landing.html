@@ -137,52 +137,7 @@
 
       <div class="form-container">
           <div class="container">
-              <div class="form-wrap">
-                  <form class="contact-us-form" id="contact-us-form">
-
-                      <!--input name start-->
-
-                      <div class="contact-us-form__input-container">
-                          <p class="input-wrapper">
-                              <input class="contact-us-form__input contact-us-form__input-name" type="text" name="name" value="" placeholder="Имя" id="contact-us-name">
-                          </p>
-
-                      </div>
-
-                      <!--input name end-->
-
-                      <!--input email start-->
-
-                      <div class="contact-us-form__input-container">
-                          <p class="input-wrapper">
-                              <input class="contact-us-form__input contact-us-form__input-email" type="email" name="email" value="" placeholder="E-mail"
-                                  id="contact-us-email">
-                          </p>
-                      </div>
-
-                      <!--input email end-->
-
-                      <!--message textarea start-->
-
-                      <div class="contact-us-form__input-container">
-                          <p class="input-wrapper">
-                              <textarea class="contact-us-form__input contact-us-form__input-message" name="text" value="" id="contact-us-message"></textarea>
-                          </p>
-
-                      </div>
-
-                      <!--message textarea end-->
-
-                      <!--form submit btn start-->
-
-                      <div class="contact-us-form__input-container">
-                          <p class="input-wrapper">
-                              <input class="contact-us-form__input contact-us-form__input-submit" type="submit" name="submit" value="Отправить" id="contact-us-submit">
-                          </p>
-                      </div>
-                      <!--form submit btn end-->
-                  </form>
-              </div>
+              {% include 'content/partials/contact_form.html' %}
               <div class="contacts-info">
                   <div class="contact-wrap">
                       <p><b>Контактный телефон: </b></p>
@@ -213,54 +168,7 @@
     {% endfor %}
   {% endif %}
 
-
-  <section class="popup">
-      <div class="popup__form-wrap">
-          <a href="#!" class="popup__close">x</a>
-
-          <form class="popup-form" id="project-form" enctype="multipart/form-data">
-              <div class="popup-form__input-wrap">
-
-                  <p class="input-wrap"><input type="text" class="popup-form__input" name="name" placeholder="Ваше имя"></p>
-              </div>
-
-              <div class="popup-form__input-wrap">
-
-                  <p class="input-wrap"><input type="text" class="popup-form__input" name="phone_or_email" placeholder="Ваш телефон или e-mail"></p>
-              </div>
-
-              <div class="popup-form__input-wrap">
-
-                  <p class="input-wrap"><textarea type="text" class="popup-form__input popup-form__input--textarea" name="description" placeholder="Описание проекта"></textarea></p>
-              </div>
-
-              <div class="popup-form__input-wrap">
-                  <p class="popup-form__upload-desc">Прикрепить Бизнес Требования / Техническое задание</p>
-                  <div class="popup-form__upload-wrap">
-                      <label for="uploadfile" class="popup-form__input-upload-label"></label>
-                      <input type="file" class="popup-form__input-upload" name="attachment" id="uploadfile">
-                      <div class="popup-form__upload-file-name" id="input-file-name"></div>
-                  </div>
-              </div>
-
-              <div class="popup-form__input-wrap popup-form__input-wrap-submit">
-                  <p><input class="popup-form__input popup-form__input-submit" type="submit" id="submit" name="submit" value="Отправить"></p>
-              </div>
-
-          </form>
-      </div>
-  </section>
-
-  <!--pop-up form end-->
-
-
-  <!-- form response popup start -->
-
-  <!-- <div class="form-response-popup">
-
-  </div> -->
-
-  <!-- form response popup end -->
+  {% include 'content/partials/popup_form.html' %}
 
 {% endblock %}
 

@@ -1,0 +1,48 @@
+  <section class="popup">
+      <div class="popup__form-wrap">
+          <a href="#!" class="popup__close">x</a>
+
+          <form class="popup-form" id="project-form" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="popup-form__input-wrap">
+
+                  <p class="input-wrap"><input type="text" class="popup-form__input" name="name" placeholder="Ваше имя"></p>
+              </div>
+
+              <div class="popup-form__input-wrap">
+
+                  <p class="input-wrap"><input type="text" class="popup-form__input" name="phone_or_email" placeholder="Ваш телефон или e-mail"></p>
+              </div>
+
+              <div class="popup-form__input-wrap">
+
+                  <p class="input-wrap"><textarea type="text" class="popup-form__input popup-form__input--textarea" name="description" placeholder="Описание проекта"></textarea></p>
+              </div>
+
+              <div class="popup-form__input-wrap">
+                  <p class="popup-form__upload-desc">Прикрепить Бизнес Требования / Техническое задание</p>
+                  <div class="popup-form__upload-wrap">
+                      <label for="uploadfile" class="popup-form__input-upload-label"></label>
+                      <input type="file" class="popup-form__input-upload" name="attachment" id="uploadfile">
+                      <div class="popup-form__upload-file-name" id="input-file-name"></div>
+                  </div>
+              </div>
+
+              <div class="popup-form__input-wrap popup-form__input-wrap-submit">
+                  <p><input class="popup-form__input popup-form__input-submit" type="submit" id="submit" name="submit" value="Отправить"></p>
+              </div>
+
+          </form>
+      </div>
+  </section>
+
+  <!--pop-up form end-->
+
+
+  <!-- form response popup start -->
+
+  <!-- <div class="form-response-popup">
+
+  </div> -->
+
+  <!-- form response popup end -->

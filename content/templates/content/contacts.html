@@ -14,52 +14,7 @@
 
       <div class="form-container">
           <div class="container">
-              <div class="form-wrap">
-                  <form class="contact-us-form" id="contact-us-form">
-
-                      <!--input name start-->
-
-                      <div class="contact-us-form__input-container">
-                          <p class="input-wrapper">
-                              <input class="contact-us-form__input contact-us-form__input-name" type="text" name="name" value="" placeholder="Имя" id="contact-us-name">
-                          </p>
-
-                      </div>
-
-                      <!--input name end-->
-
-                      <!--input email start-->
-
-                      <div class="contact-us-form__input-container">
-                          <p class="input-wrapper">
-                              <input class="contact-us-form__input contact-us-form__input-email" type="email" name="email" value="" placeholder="E-mail"
-                                  id="contact-us-email">
-                          </p>
-                      </div>
-
-                      <!--input email end-->
-
-                      <!--message textarea start-->
-
-                      <div class="contact-us-form__input-container">
-                          <p class="input-wrapper">
-                              <textarea class="contact-us-form__input contact-us-form__input-message" name="text" value="" id="contact-us-message"></textarea>
-                          </p>
-
-                      </div>
-
-                      <!--message textarea end-->
-
-                      <!--form submit btn start-->
-
-                      <div class="contact-us-form__input-container">
-                          <p class="input-wrapper">
-                              <input class="contact-us-form__input contact-us-form__input-submit" type="submit" name="submit" value="Отправить" id="contact-us-submit">
-                          </p>
-                      </div>
-                      <!--form submit btn end-->
-                  </form>
-              </div>
+              {% include 'content/partials/contact_form.html' %}
               <div class="contacts-info">
                   <div class="contact-wrap">
                       <p><b>Контактный телефон: </b></p>
