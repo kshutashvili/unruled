@@ -4,3 +4,4 @@ django-solo==1.1.2
 django-ckeditor==5.2.2
 Pillow==4.2.1
 django-mptt==0.8.7
+django-modeladmin-reorder==0.2

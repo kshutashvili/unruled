@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Django settings for unruled project.
 
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'solo',
     'ckeditor',
     'mptt',
+    'admin_reorder',
     # User
     'config',
     'content',
@@ -54,7 +56,52 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'admin_reorder.middleware.ModelAdminReorder',
 ]
+
+# reorder admin
+ADMIN_REORDER = (
+
+    {
+        'app': 'content', 'label': u'Сообщения и заказы',
+        'models': (
+            'content.Order',
+            'bot.UserAnswer',
+            'content.Message',
+        )
+    },
+    'config',
+    {
+        'app': 'bot',
+        'models': (
+            'bot.BotPerson',
+            'bot.BotQuestion',
+        )
+    },
+    {
+        'app': 'content', 'label': u'Клиенты и портфолио',
+        'models': (
+            'content.Client',
+            'content.Portfolio',
+        )
+    },
+    {
+        'app': 'content',
+        'models': (
+            'content.MenuItem',
+            'content.UnruledNumbers',
+            'content.WhyUnruled',
+            'content.ExtraBlock',
+        )
+    },
+    {
+        'app': 'auth',
+        'models': (
+            'auth.User',
+            'auth.Group',
+        )
+    },
+)
 
 ROOT_URLCONF = 'unruled.urls'
 

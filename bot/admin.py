@@ -21,11 +21,6 @@ class BotQuestionAdmin(admin.ModelAdmin):
     inlines = (BotAnswerInline, )
 
 
-@admin.register(BotAnswer)
-class BotAnswerAdmin(admin.ModelAdmin):
-    list_display = ('question', 'answer_type', 'title')
-
-
 @admin.register(UserAnswer)
 class UserAnswerAdmin(admin.ModelAdmin):
     list_display = ('answer', 'name', 'email', 'created_dt')

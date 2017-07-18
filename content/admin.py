@@ -24,32 +24,34 @@ class MenuItemAdmin(MPTTModelAdmin):
 
 @admin.register(UnruledNumbers)
 class UnruledNumbersAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('number', 'measure_unit')
 
 
 @admin.register(Client)
 class ClientAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', )
 
 
 @admin.register(WhyUnruled)
 class WhyUnruledAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('text', )
+
+
+class PortfolioImageInline(admin.TabularInline):
+    model = PortfolioImage
+    extra = 0
 
 
 @admin.register(Portfolio)
 class PortfolioAdmin(admin.ModelAdmin):
-    pass
-
-
-@admin.register(PortfolioImage)
-class PortfolioImageAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'url', 'release_date')
+    inlines = (PortfolioImageInline, )
 
 
 @admin.register(Message)
 class MessageAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('name', 'email', 'created_dt')
+    readonly_fields = ('created_dt', )
 
 
 @admin.register(Order)
