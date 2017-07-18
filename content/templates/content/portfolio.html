@@ -13,7 +13,8 @@
                   <p class="desc-block__release">Дата релиза {{ portfolio.release_date }}</p>
                   <h1>{{ portfolio.name }}</h1>
                   {% if portfolio.url %}
-                  <h2>{{ portfolio.url }}</h2>
+                    <!-- TODO: styling link -->
+                  <h2><a href="{{ portfolio.url }}" target="_blank">{{ portfolio.url }}</a></h2>
                   {% endif %}
 
                   <div>
