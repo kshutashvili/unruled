@@ -6,6 +6,7 @@ from .models import (ExtraBlock, MenuItem, UnruledNumbers,
                      Client, WhyUnruled, Portfolio, PortfolioImage,
                      Message, Order)
 from mptt.admin import MPTTModelAdmin
+from adminsortable2.admin import SortableAdminMixin
 
 
 @admin.register(ExtraBlock)
@@ -16,8 +17,9 @@ class ExtraBlockAdmin(admin.ModelAdmin):
 
 
 @admin.register(MenuItem)
-class MenuItemAdmin(MPTTModelAdmin):
+class MenuItemAdmin(SortableAdminMixin, MPTTModelAdmin):
 
+    ordering = ('order', )
     list_display = ('title', 'position')
     list_filter = ('position', )
 

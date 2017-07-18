@@ -68,17 +68,21 @@ class MenuItemQuerySet(models.QuerySet):
 
     def header_items(self, *args, **kwargs):
         kwargs['position'] = MenuItem.PositionChoices.HEADER
-        return self.filter(*args, **kwargs)
+        return self.filter(*args, **kwargs).order_by('order')
 
     def footer_items(self, *args, **kwargs):
         kwargs['position'] = MenuItem.PositionChoices.FOOTER
-        return self.filter(*args, **kwargs)
+        return self.filter(*args, **kwargs).order_by('order')
 
 
 class MenuItem(MPTTModel):
     class Meta:
         verbose_name = "Пункт меню"
         verbose_name_plural = "Пункты меню"
+        ordering = ('order', )
+
+    class MPTTMeta:
+        order_insertion_by = ['order']
 
     class PositionChoices:
         HEADER = 'header'
@@ -103,7 +107,10 @@ class MenuItem(MPTTModel):
     position = models.CharField("Положение",
                                 max_length=10,
                                 default=PositionChoices.HEADER,
-                                choices=PositionChoices._CHOICES)
+                                choices=PositionChoices._CHOICES,
+                                db_index=True)
+
+    order = models.PositiveIntegerField('Порядок', default=0)
 
     objects = TreeManager.from_queryset(MenuItemQuerySet)()
     objects.use_for_related_fields = True

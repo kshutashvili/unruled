@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'mptt',
     'admin_reorder',
+    'adminsortable2',
     # User
     'config',
     'content',
