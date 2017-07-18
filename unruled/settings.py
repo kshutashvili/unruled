@@ -193,6 +193,12 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MAX_UPLOAD_SIZE = 5242880  # setting for user uploads (5 MB)
+UPLOAD_ALLOWED_MIME_TYPES = {
+    'application/pdf',
+    'text/plain',
+    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+
+}
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
