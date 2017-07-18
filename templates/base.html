@@ -103,7 +103,7 @@
           </div>
       </div>
   </footer> <!--footer end-->
-{% if left_menu_hide %}</div> <!-- wrap-for-left-menu end -->{% endif %}
+{% if not left_menu_hide %}</div> <!-- wrap-for-left-menu end -->{% endif %}
 
 {% block scripts %}
   <script src="{% static 'js/app.js' %}"></script>
