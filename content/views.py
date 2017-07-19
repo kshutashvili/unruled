@@ -95,7 +95,7 @@ def order_create_view(request):
 
 def attachment_view(request, filename):
     """Allow to download files only for authorized users"""
-    if request.user:
+    if request.user is not None:
         response = HttpResponse()
         url = os.path.join('/media/orders/', filename)
         response['Content-Disposition'] = 'attachment; filename=%s' % smart_str(filename)
