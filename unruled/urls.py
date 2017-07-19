@@ -22,4 +22,7 @@ urlpatterns = [
     url(r'^', include('content.urls', namespace='content')),
     url(r'^bot/', include('bot.urls', namespace='bot')),
     url(r'^admin/', admin.site.urls),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
