@@ -90,10 +90,9 @@
               {% endif %}
           </div>
           <div class="footer__nav">
-            <!-- TODO: generic styling -->
             {% for item in menu_items.footer_items %}
-              <div class="about-company">
-                <h2 class="footer__nav__title about-company__title"><a href="{{ item.url }}">{{ item.title }}</a></h2>
+              <div class="menu-block">
+                <h2><a href="{{ item.url }}">{{ item.title }}</a></h2>
                 {% for child in item.get_children %}
                 <a href="{{ child.url }}" class="footer__nav__link">{% menu_item_title child %}</a>
 

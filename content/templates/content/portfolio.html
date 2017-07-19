@@ -13,7 +13,6 @@
                   <p class="desc-block__release">Дата релиза {{ portfolio.release_date }}</p>
                   <h1>{{ portfolio.name }}</h1>
                   {% if portfolio.url %}
-                    <!-- TODO: styling link -->
                   <h2><a href="{{ portfolio.url }}" target="_blank">{{ portfolio.url }}</a></h2>
                   {% endif %}
 
@@ -26,17 +25,14 @@
                   </div>
               </div>
 
-              <!-- TODO: alignment -->
               <div class="gallery-section__gallery-nav gallery-nav">
                 {% if prev_portfolio != None %}
                 <a href="{{ prev_portfolio }}" class="gallery-nav__arrow gallery-nav__arrow--prev">Назад</a>
                 {% endif %}
-
+                <a href="#!" class="gallery-section__btn pop-up-form-open" data-project-id="{{ portfolio.id }}">Заказать проект</a>
                 {% if next_portfolio != None %}
                 <a href="{{ next_portfolio }}" class="gallery-nav__arrow gallery-nav__arrow--next">Вперед</a>
                 {% endif %}
-
-                <a href="#!" class="gallery-section__btn pop-up-form-open" data-project-id="{{ portfolio.id }}">Заказать проект</a>
 
               </div>
 
@@ -61,7 +57,7 @@
                   <div class="screenshot-popup__img-wrap">
                       <a href="#!" class="screenshot-popup__close">X</a>
                       <div class="screenshot-popup__img">
-                          <img src="" alt="big-screentshot">
+                          <img src="" alt="" id="full-screenshot-img">
                       </div>
                   </div>
               </div>

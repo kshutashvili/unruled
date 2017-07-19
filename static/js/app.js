@@ -116,7 +116,8 @@ null==d?void 0:d))},attrHooks:{type:{set:function(a,b){if(!o.radioValue&&"radio"
                     required: true
                 },
                 contact: {
-                    required: true
+                    required: true,
+                    email: true
                 }
             },
             messages: {
@@ -150,13 +151,13 @@ null==d?void 0:d))},attrHooks:{type:{set:function(a,b){if(!o.radioValue&&"radio"
     }
 
 
-    $(document).ready(function () {
+     $(document).ready(function () {
 
         botGreetingVisibility();
 
         var dataService = new botDataService();
         dataService.get();
-    });
+    }); 
 })()
 function contactFormValidation() {
     var popup = new responsePopup();
@@ -229,21 +230,28 @@ $(document).ready(function () {
 //open and close pop-up window with screenshot in gallery
 
 $(document).ready(function () {
-
-    var popupWindow = $(".screenshot-popup");
-    var openBtns = $(".screenshot-btn"); // btns which open pop-up with form
-    var closeBtn = $(".screenshot-popup__close");
-
-    openBtns.each(function () {
+    var $popupWindow = $(".screenshot-popup");
+    var $fullImg = $popupWindow.find("#full-screenshot-img");
+    var $openBtns = $(".screenshot-btn"); // btns which open pop-up with form
+    var $closeBtn = $(".screenshot-popup__close");
+    var src;
+    var alt;
+    
+    $openBtns.each(function () {
         $(this).on("click", function (e) {
             e.preventDefault();
-            popupWindow.show();
+            src = $(this).find("img").attr("src");
+            alt = $(this).find("img").attr("alt");
+
+            $fullImg.attr("src", src)
+
+            $popupWindow.show();
         })
     })
 
-    closeBtn.on("click", function (e) {
+    $closeBtn.on("click", function (e) {
         e.preventDefault();
-        popupWindow.hide();
+        $popupWindow.hide();
     });
 
 });
