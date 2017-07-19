@@ -4,8 +4,12 @@ from django.views.generic import TemplateView, ListView, DetailView
 from .models import (ExtraBlock, UnruledNumbers, Client, WhyUnruled,
                      Portfolio)
 from .forms import MessageForm, OrderForm
-from django.http import JsonResponse, HttpResponseBadRequest
+from django.http import (JsonResponse, HttpResponseBadRequest,
+                         HttpResponse, HttpResponseForbidden)
 import json
+import os
+from django.utils.encoding import smart_str
+from django.conf import settings
 
 
 class LandingView(TemplateView):
@@ -88,3 +92,18 @@ def order_create_view(request):
 
     return JsonResponse({'status': 'error'})
 
+
+def attachment_view(request, filename):
+    """Allow to download files only for authorized users"""
+    if request.user:
+        response = HttpResponse()
+        url = os.path.join('/media/orders/', filename)
+        response['Content-Disposition'] = 'attachment; filename=%s' % smart_str(filename)
+        path = os.path.join(settings.MEDIA_ROOT, 'orders/', filename)
+        length = os.path.getsize(path)
+        response['Content-Length'] = str(length)
+        response['X-Accel-Redirect'] = url
+        return response
+
+    else:
+        return HttpResponseForbidden("Restricted Access")

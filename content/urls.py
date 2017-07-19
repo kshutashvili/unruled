@@ -2,7 +2,7 @@ from django.conf.urls import url
 
 
 from content.views import (LandingView, PortfolioListView, PortfolioDetailView,
-                           ContactsView, order_create_view)
+                           ContactsView, order_create_view, attachment_view)
 
 
 urlpatterns = [
@@ -13,4 +13,7 @@ urlpatterns = [
         name='portfolio_detail'),
     url(r'^contacts/$', ContactsView.as_view(), name='contacts'),
     url(r'^order/$', order_create_view, name='create_order'),
+    url(r'attachment/(?P<filename>[^/]+)/$',
+        attachment_view,
+        name='attachment_view'),
 ]

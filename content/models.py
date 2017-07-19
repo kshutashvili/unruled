@@ -7,6 +7,8 @@ from django.contrib.contenttypes.models import ContentType
 from ckeditor.fields import RichTextField
 import datetime
 from mptt.models import MPTTModel, TreeForeignKey, TreeManager
+import os
+from django.utils.html import format_html
 
 
 class ExtraBlockQuerySet(models.QuerySet):
@@ -214,3 +216,11 @@ class Order(models.Model):
 
     def __unicode__(self):
         return '{} {}'.format(self.name, self.phone_or_email)
+
+    def download_attachment(self):
+        if self.attachment:
+            url = reverse('content:attachment_view',
+                          args=[os.path.basename(self.attachment.file.name)])
+            return format_html('<a class="button" href="' + url + '">Загрузить</a>')
+
+    download_attachment.short_description = 'Требования/тех задание'

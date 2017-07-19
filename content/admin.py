@@ -58,5 +58,7 @@ class MessageAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('name', 'phone_or_email', 'created_dt')
-    readonly_fields = ('created_dt', )
+    list_display = ('name', 'phone_or_email',
+                    'created_dt', 'download_attachment')
+    readonly_fields = ('created_dt', 'download_attachment', )
+    exclude = ('attachment', )
