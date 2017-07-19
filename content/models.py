@@ -221,6 +221,6 @@ class Order(models.Model):
         if self.attachment:
             url = reverse('content:attachment_view',
                           args=[os.path.basename(self.attachment.file.name)])
-            return format_html('<a class="button" href="' + url + '">Загрузить</a>')
+            return format_html('<a class="button" href="' + url + '">Скачать</a>')
 
     download_attachment.short_description = 'Требования/тех задание'
