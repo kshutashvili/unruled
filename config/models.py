@@ -15,6 +15,10 @@ class SiteConfiguration(SingletonModel):
                                   max_length=70,
                                   default='Unruled Lab_')
 
+    brand_slogan = models.CharField('Слоган компании',
+                                    max_length=255,
+                                    default='Rule the rules')
+
     phone = models.CharField(
         'Телефон',
         max_length=50,
@@ -41,9 +45,17 @@ class SiteConfiguration(SingletonModel):
                                      blank=True,
                                      null=True)
 
-    block_trap_text = models.TextField('Текст блока-ловушки', blank=True)
+    trap_block_text_1 = models.TextField('Текст первого блока-ловушки',
+                                         blank=True)
+    trap_block_text_2 = models.TextField('Текст второго блока-ловушки',
+                                         blank=True)
+    trap_block_text_3 = models.TextField('Текст третьего блока-ловушки',
+                                         blank=True)
+    trap_block_text_4 = models.TextField('Текст четвертого блока-ловушки',
+                                         blank=True)
 
     about_slogan = models.TextField('Слоган', blank=True)
+    about_slogan_text = models.TextField('Текст под слоганом', blank=True)
     about_text = models.TextField('Текст о компании', blank=True)
 
     show_about = models.BooleanField('Блок "О компании"', default=True)

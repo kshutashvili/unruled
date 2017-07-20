@@ -9,16 +9,6 @@
 {% include 'bot/bot.html' %}
 {% endblock %}
 
-{% if conf.block_trap_text %}
-{% block trap_block %}
-  <div class="trap-block">
-      <div class="container">
-        {{ conf.block_trap_text|linebreaks }}
-      </div>
-  </div>
-{% endblock %}
-{% endif %}
-
 {% block left_menu %}
       <a href="{% if conf.show_about %}#history{% else %}#!{% endif %}">История</a>
       <a href="{% if conf.show_clients %}#clients{% else %}#!{% endif %}">Клиенты</a>
@@ -33,7 +23,8 @@
     <div class="container">
       <!--history block start-->
       <div class="tagline">
-          <p><span></span>{{ conf.about_slogan }}</p>
+        <p><span></span>{{ conf.about_slogan }}</p>
+        <h2>{{ conf.about_slogan_text }}</h2>
       </div>
       <hr width="2px" color="#fff" size='429px'>
       <div class="history">
@@ -124,7 +115,6 @@
   {% endif %}
 
   {% if extra_blocks %}
-    <!-- TODO: extra block section -->
     <!-- extra block start -->
     {% for extra_block in extra_blocks %}
 
